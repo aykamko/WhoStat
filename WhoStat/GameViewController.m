@@ -33,6 +33,7 @@
         _correctFriendName = @"Dan";
         _correctFriendImage = [UIImage imageNamed:@"eye.jpeg"];
         _friendOptions = [[NSArray alloc] initWithObjects:matt, george, dan, ashwin, aleks, nil];
+        [[self guessImageView] setImage:nil];
     }
     return self;
 }
@@ -42,9 +43,17 @@
     
 }
 
--(void)flipFlippingParentViewWithBlock:(void (^)(BOOL))completion shouldFlipToFinalLayout:(BOOL)shouldFlipToFinalLayout{
+- (void)setCurrentStatus:(NSString *)currentStatus
+{
+    _currentStatus = currentStatus;
+    [[self statusTextView] setText:_currentStatus];
+    [[self statusTextView] setNeedsDisplay];
+    NSLog(@"yo");
+}
+
+- (void)flipFlippingParentViewWithBlock:(void (^)(BOOL))completion shouldFlipToFinalLayout:(BOOL)shouldFlipToFinalLayout{
     [UIView transitionWithView:self.flippingParentView
-                      duration:1.0
+                      duration:0.5
                        options:(_displayingStatus ? UIViewAnimationOptionTransitionFlipFromRight :
                                 UIViewAnimationOptionTransitionFlipFromLeft)
                     animations: ^{
@@ -58,7 +67,7 @@
                             self.nextButton.hidden = false;
                             
                         }
-                        else if(_displayingStatus)
+                        else if (_displayingStatus)
                         {
                             self.statusView.hidden = true;
                             self.confirmGuessView.hidden = false;
@@ -68,6 +77,8 @@
                             self.statusView.hidden = false;
                             self.confirmGuessView.hidden = true;
                         }
+                        
+                        _flippedView = self;
                     }
                     completion:completion];
 }
@@ -85,16 +96,19 @@
 - (IBAction)confirmGuess:(id)sender {
     NSString *nameOfGuessedFriend = [[self nameLabel] text];
     NSLog(@"%@", nameOfGuessedFriend);
+    NSLog(@"%i", [self isEqual: _flippedView]);
     if ([nameOfGuessedFriend isEqualToString:_correctFriendName]) {
-        [UIView animateWithDuration:1 animations:^{
+        NSLog(@"imageNew: %@", [_flippedView guessImageView]);
+        [[_flippedView guessImageView] setImage:nil];
+        [[_flippedView guessImageView] setNeedsDisplay];
+        [UIImageView animateWithDuration:1 animations:^{
             [[self xOrOImageView] setImage:[UIImage imageNamed:@"checkmark.png"]];
         }];
     } else {
-        [UIView animateWithDuration:0 animations:^{
+        [UIImageView animateWithDuration:0 animations:^{
             [[self xOrOImageView] setImage:[UIImage imageNamed:@"xmark.png"]];
         }];
     }
-    usleep(500000);
     [self flipFlippingParentViewWithBlock:^(BOOL finished) {
         if (finished) {
             _displayingStatus = !_displayingStatus;

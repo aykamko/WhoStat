@@ -15,6 +15,7 @@
                 <outlet property="nameLabel" destination="277" id="384"/>
                 <outlet property="nextButton" destination="372" id="381"/>
                 <outlet property="noButton" destination="260" id="371"/>
+                <outlet property="statusTextView" destination="203" id="al6-BE-fZa"/>
                 <outlet property="statusView" destination="129" id="142"/>
                 <outlet property="topLabel" destination="87" id="382"/>
                 <outlet property="view" destination="1" id="3"/>

@@ -28,7 +28,7 @@
                         <accessibilityTraits key="traits" none="YES" button="YES" staticText="YES"/>
                     </accessibility>
                     <constraints>
-                        <constraint firstAttribute="height" constant="74" id="zpj-qH-Far"/>
+                        <constraint firstAttribute="height" constant="74" id="CeQ-6n-6RZ"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="64"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -49,40 +49,19 @@
                         <action selector="playGame:" destination="-1" eventType="touchUpInside" id="71"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9W8-bN-myB">
-                    <rect key="frame" x="37" y="102" width="246" height="44"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="44" id="6V9-Ro-5yL"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                    <state key="normal" title="Login To Facebook">
-                        <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <state key="highlighted">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="facebookLogin:" destination="-1" eventType="touchUpInside" id="zfk-ak-30f"/>
-                    </connections>
-                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="9W8-bN-myB" firstAttribute="top" secondItem="49" secondAttribute="bottom" constant="8" symbolic="YES" id="7kf-s1-aj9"/>
-                <constraint firstItem="9W8-bN-myB" firstAttribute="leading" secondItem="49" secondAttribute="leading" id="A4A-wH-0jV"/>
-                <constraint firstItem="4" firstAttribute="top" secondItem="9W8-bN-myB" secondAttribute="bottom" constant="20" id="AZz-KU-UEu"/>
-                <constraint firstItem="9W8-bN-myB" firstAttribute="centerX" secondItem="4" secondAttribute="centerX" id="CTG-zQ-qFL"/>
-                <constraint firstItem="49" firstAttribute="centerX" secondItem="3" secondAttribute="centerX" id="Kqo-hJ-o9e"/>
-                <constraint firstItem="56" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="81" id="QXh-72-Yb1"/>
-                <constraint firstItem="49" firstAttribute="top" secondItem="3" secondAttribute="top" constant="20" symbolic="YES" id="SGB-ij-atH"/>
-                <constraint firstItem="4" firstAttribute="centerY" secondItem="3" secondAttribute="centerY" id="ZN6-YO-lVn"/>
-                <constraint firstItem="4" firstAttribute="centerX" secondItem="56" secondAttribute="centerX" id="aDr-Fe-c2A"/>
-                <constraint firstItem="4" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="84" id="hpM-GO-eML"/>
-                <constraint firstAttribute="bottom" secondItem="56" secondAttribute="bottom" constant="20" symbolic="YES" id="p5T-ao-xql"/>
-                <constraint firstItem="49" firstAttribute="trailing" secondItem="9W8-bN-myB" secondAttribute="trailing" id="rLQ-rB-HJF"/>
-                <constraint firstItem="56" firstAttribute="top" secondItem="4" secondAttribute="bottom" constant="70" id="ubW-IQ-qMR"/>
+                <constraint firstItem="49" firstAttribute="centerX" secondItem="3" secondAttribute="centerX" id="1bN-bG-azz"/>
+                <constraint firstItem="4" firstAttribute="centerX" secondItem="49" secondAttribute="centerX" id="3lN-sc-0fe"/>
+                <constraint firstAttribute="bottom" secondItem="56" secondAttribute="bottom" constant="20" symbolic="YES" id="P91-Cd-fVM"/>
+                <constraint firstItem="56" firstAttribute="centerX" secondItem="4" secondAttribute="centerX" id="T2g-wf-8Yq"/>
+                <constraint firstItem="49" firstAttribute="top" secondItem="3" secondAttribute="top" constant="20" symbolic="YES" id="TIc-7o-fOj"/>
+                <constraint firstItem="4" firstAttribute="centerY" secondItem="3" secondAttribute="centerY" id="YWO-g8-nKA"/>
+                <constraint firstItem="4" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="84" id="h51-ED-YT0"/>
+                <constraint firstItem="4" firstAttribute="top" secondItem="49" secondAttribute="bottom" constant="72" id="j5i-ak-WP6"/>
+                <constraint firstItem="56" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="81" id="kQz-JD-Y27"/>
+                <constraint firstItem="56" firstAttribute="top" secondItem="4" secondAttribute="bottom" constant="70" id="s02-Z2-gQh"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>

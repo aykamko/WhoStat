@@ -1,24 +1,22 @@
 //
-//  WhoStatAppDelegate.m
+//  AppDelegate.m
 //  WhoStat
 //
-//  Created by Dan Schlosser on 7/11/13.
-//  Copyright (c) 2013 Dan Schlosser. All rights reserved.
+//  Created by Ashwin Murthy on 7/11/13.
+//  Copyright (c) 2013 Ashwin Murthy. All rights reserved.
 //
 
-#import "WhoStatAppDelegate.h"
-#import "TitleViewController.h"
+#import "AppDelegate.h"
 
-@implementation WhoStatAppDelegate
+@implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    
+    NSLog(@"Hello?");
     TitleViewController *titleViewController = [[TitleViewController alloc] initWithNibName:@"TitleViewController" bundle:nil];
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:titleViewController];
-    [navController setNavigationBarHidden:YES];
     [[self window] setRootViewController:navController];
     
     self.window.backgroundColor = [UIColor whiteColor];

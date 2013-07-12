@@ -16,6 +16,21 @@
 		141EF140178F9C6600B4DFC3 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 141EF13F178F9C6600B4DFC3 /* Default.png */; };
 		141EF142178F9C6600B4DFC3 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 141EF141178F9C6600B4DFC3 /* Default@2x.png */; };
 		141EF144178F9C6600B4DFC3 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 141EF143178F9C6600B4DFC3 /* Default-568h@2x.png */; };
+		141EF14D178F9C8900B4DFC3 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 141EF14B178F9C8900B4DFC3 /* GameViewController.m */; };
+		141EF14E178F9C8900B4DFC3 /* GameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 141EF14C178F9C8900B4DFC3 /* GameViewController.xib */; };
+		141EF151178F9F4F00B4DFC3 /* FriendOptionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 141EF150178F9F4F00B4DFC3 /* FriendOptionCell.m */; };
+		141EF153178F9F8100B4DFC3 /* FriendOptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 141EF152178F9F8100B4DFC3 /* FriendOptionCell.xib */; };
+		141EF160178FB3D400B4DFC3 /* QuestionMark.png in Resources */ = {isa = PBXBuildFile; fileRef = 141EF15B178FB3D400B4DFC3 /* QuestionMark.png */; };
+		141EF161178FB3D400B4DFC3 /* TitleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 141EF15D178FB3D400B4DFC3 /* TitleViewController.m */; };
+		141EF162178FB3D400B4DFC3 /* TitleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 141EF15E178FB3D400B4DFC3 /* TitleViewController.xib */; };
+		14F5BC03178FDC54008B8FEE /* FlippingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F5BC02178FDC54008B8FEE /* FlippingViewController.m */; };
+		14F5BC05178FE3B3008B8FEE /* earth.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 14F5BC04178FE3B3008B8FEE /* earth.jpeg */; };
+		14F5BC07178FE40C008B8FEE /* eye.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 14F5BC06178FE40C008B8FEE /* eye.jpeg */; };
+		14F5BC09178FE42A008B8FEE /* girl.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 14F5BC08178FE42A008B8FEE /* girl.jpg */; };
+		14F5BC0B178FE43E008B8FEE /* camera.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 14F5BC0A178FE43E008B8FEE /* camera.jpg */; };
+		14F5BC0D178FE462008B8FEE /* man.png in Resources */ = {isa = PBXBuildFile; fileRef = 14F5BC0C178FE462008B8FEE /* man.png */; };
+		14F5BC0F178FF885008B8FEE /* checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 14F5BC0E178FF885008B8FEE /* checkmark.png */; };
+		14F5BC11178FF88C008B8FEE /* xmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 14F5BC10178FF88C008B8FEE /* xmark.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +47,25 @@
 		141EF13F178F9C6600B4DFC3 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		141EF141178F9C6600B4DFC3 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		141EF143178F9C6600B4DFC3 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		141EF14A178F9C8900B4DFC3 /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
+		141EF14B178F9C8900B4DFC3 /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
+		141EF14C178F9C8900B4DFC3 /* GameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameViewController.xib; sourceTree = "<group>"; };
+		141EF14F178F9F4F00B4DFC3 /* FriendOptionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendOptionCell.h; sourceTree = "<group>"; };
+		141EF150178F9F4F00B4DFC3 /* FriendOptionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendOptionCell.m; sourceTree = "<group>"; };
+		141EF152178F9F8100B4DFC3 /* FriendOptionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendOptionCell.xib; sourceTree = "<group>"; };
+		141EF15B178FB3D400B4DFC3 /* QuestionMark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = QuestionMark.png; sourceTree = "<group>"; };
+		141EF15C178FB3D400B4DFC3 /* TitleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleViewController.h; sourceTree = "<group>"; };
+		141EF15D178FB3D400B4DFC3 /* TitleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleViewController.m; sourceTree = "<group>"; };
+		141EF15E178FB3D400B4DFC3 /* TitleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TitleViewController.xib; sourceTree = "<group>"; };
+		14F5BC01178FDC54008B8FEE /* FlippingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlippingViewController.h; sourceTree = "<group>"; };
+		14F5BC02178FDC54008B8FEE /* FlippingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlippingViewController.m; sourceTree = "<group>"; };
+		14F5BC04178FE3B3008B8FEE /* earth.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = earth.jpeg; sourceTree = "<group>"; };
+		14F5BC06178FE40C008B8FEE /* eye.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = eye.jpeg; sourceTree = "<group>"; };
+		14F5BC08178FE42A008B8FEE /* girl.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = girl.jpg; sourceTree = "<group>"; };
+		14F5BC0A178FE43E008B8FEE /* camera.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = camera.jpg; sourceTree = "<group>"; };
+		14F5BC0C178FE462008B8FEE /* man.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = man.png; sourceTree = "<group>"; };
+		14F5BC0E178FF885008B8FEE /* checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkmark.png; sourceTree = "<group>"; };
+		14F5BC10178FF88C008B8FEE /* xmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xmark.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,8 +112,27 @@
 		141EF133178F9C6600B4DFC3 /* WhoStat */ = {
 			isa = PBXGroup;
 			children = (
+				141EF15B178FB3D400B4DFC3 /* QuestionMark.png */,
+				141EF15C178FB3D400B4DFC3 /* TitleViewController.h */,
+				141EF15D178FB3D400B4DFC3 /* TitleViewController.m */,
+				141EF15E178FB3D400B4DFC3 /* TitleViewController.xib */,
 				141EF13C178F9C6600B4DFC3 /* WhoStatAppDelegate.h */,
 				141EF13D178F9C6600B4DFC3 /* WhoStatAppDelegate.m */,
+				141EF14F178F9F4F00B4DFC3 /* FriendOptionCell.h */,
+				141EF150178F9F4F00B4DFC3 /* FriendOptionCell.m */,
+				141EF152178F9F8100B4DFC3 /* FriendOptionCell.xib */,
+				14F5BC01178FDC54008B8FEE /* FlippingViewController.h */,
+				14F5BC02178FDC54008B8FEE /* FlippingViewController.m */,
+				141EF14A178F9C8900B4DFC3 /* GameViewController.h */,
+				141EF14B178F9C8900B4DFC3 /* GameViewController.m */,
+				141EF14C178F9C8900B4DFC3 /* GameViewController.xib */,
+				14F5BC04178FE3B3008B8FEE /* earth.jpeg */,
+				14F5BC06178FE40C008B8FEE /* eye.jpeg */,
+				14F5BC08178FE42A008B8FEE /* girl.jpg */,
+				14F5BC0C178FE462008B8FEE /* man.png */,
+				14F5BC0A178FE43E008B8FEE /* camera.jpg */,
+				14F5BC0E178FF885008B8FEE /* checkmark.png */,
+				14F5BC10178FF88C008B8FEE /* xmark.png */,
 				141EF134178F9C6600B4DFC3 /* Supporting Files */,
 			);
 			path = WhoStat;
@@ -155,6 +208,17 @@
 				141EF140178F9C6600B4DFC3 /* Default.png in Resources */,
 				141EF142178F9C6600B4DFC3 /* Default@2x.png in Resources */,
 				141EF144178F9C6600B4DFC3 /* Default-568h@2x.png in Resources */,
+				141EF14E178F9C8900B4DFC3 /* GameViewController.xib in Resources */,
+				141EF153178F9F8100B4DFC3 /* FriendOptionCell.xib in Resources */,
+				141EF160178FB3D400B4DFC3 /* QuestionMark.png in Resources */,
+				141EF162178FB3D400B4DFC3 /* TitleViewController.xib in Resources */,
+				14F5BC05178FE3B3008B8FEE /* earth.jpeg in Resources */,
+				14F5BC07178FE40C008B8FEE /* eye.jpeg in Resources */,
+				14F5BC09178FE42A008B8FEE /* girl.jpg in Resources */,
+				14F5BC0B178FE43E008B8FEE /* camera.jpg in Resources */,
+				14F5BC0D178FE462008B8FEE /* man.png in Resources */,
+				14F5BC0F178FF885008B8FEE /* checkmark.png in Resources */,
+				14F5BC11178FF88C008B8FEE /* xmark.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,6 +231,10 @@
 			files = (
 				141EF13A178F9C6600B4DFC3 /* main.m in Sources */,
 				141EF13E178F9C6600B4DFC3 /* WhoStatAppDelegate.m in Sources */,
+				141EF14D178F9C8900B4DFC3 /* GameViewController.m in Sources */,
+				141EF151178F9F4F00B4DFC3 /* FriendOptionCell.m in Sources */,
+				141EF161178FB3D400B4DFC3 /* TitleViewController.m in Sources */,
+				14F5BC03178FDC54008B8FEE /* FlippingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,6 +351,7 @@
 				141EF149178F9C6600B4DFC3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

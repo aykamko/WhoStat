@@ -8,8 +8,11 @@
 
 #import "TitleViewController.h"
 #import "GameViewController.h"
+#import "WhoStatAppDelegate.h"
 
 @interface TitleViewController ()
+
+- (IBAction)facebookLogin:(id)sender;
 
 @end
 
@@ -42,5 +45,30 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (IBAction)facebookLogin:(id)sender
+{
+    if (FBSession.activeSession.isOpen) {
+        NSLog(@"already logged in");
+    } else {
+        FBSessionStateHandler handler = ^(FBSession *session, FBSessionState status, NSError *error) {
+            if (error) {
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                                    message:error.localizedDescription
+                                                                   delegate:nil
+                                                          cancelButtonTitle:@"OK"
+                                                          otherButtonTitles:nil];
+                [alertView show];
+            } else if (session.isOpen) {
+                NSLog(@"successful login!");
+            }
+        };
+        [FBSession openActiveSessionWithReadPermissions:@[@"read_stream"]
+                                           allowLoginUI:YES
+                                      completionHandler:handler];
+        return;
+    }
+}
+
 @end
 

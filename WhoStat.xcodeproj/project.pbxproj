@@ -31,6 +31,12 @@
 		14F5BC0D178FE462008B8FEE /* man.png in Resources */ = {isa = PBXBuildFile; fileRef = 14F5BC0C178FE462008B8FEE /* man.png */; };
 		14F5BC0F178FF885008B8FEE /* checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 14F5BC0E178FF885008B8FEE /* checkmark.png */; };
 		14F5BC11178FF88C008B8FEE /* xmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 14F5BC10178FF88C008B8FEE /* xmark.png */; };
+		7C2C36FE179078F200133EF9 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C2C36FD179078F200133EF9 /* FacebookSDK.framework */; };
+		7C2C37001790790B00133EF9 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C2C36FF1790790B00133EF9 /* Security.framework */; };
+		7C2C37021790791200133EF9 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C2C37011790791200133EF9 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		7C2C37041790791900133EF9 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C2C37031790791900133EF9 /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		7C2C37061790791E00133EF9 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C2C37051790791E00133EF9 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		7C2C370817907E3800133EF9 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C2C370717907E3800133EF9 /* libsqlite3.0.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +72,12 @@
 		14F5BC0C178FE462008B8FEE /* man.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = man.png; sourceTree = "<group>"; };
 		14F5BC0E178FF885008B8FEE /* checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkmark.png; sourceTree = "<group>"; };
 		14F5BC10178FF88C008B8FEE /* xmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xmark.png; sourceTree = "<group>"; };
+		7C2C36FD179078F200133EF9 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		7C2C36FF1790790B00133EF9 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		7C2C37011790791200133EF9 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		7C2C37031790791900133EF9 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		7C2C37051790791E00133EF9 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		7C2C370717907E3800133EF9 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +85,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C2C370817907E3800133EF9 /* libsqlite3.0.dylib in Frameworks */,
+				7C2C36FE179078F200133EF9 /* FacebookSDK.framework in Frameworks */,
+				7C2C37001790790B00133EF9 /* Security.framework in Frameworks */,
+				7C2C37021790791200133EF9 /* Social.framework in Frameworks */,
+				7C2C37041790791900133EF9 /* AdSupport.framework in Frameworks */,
+				7C2C37061790791E00133EF9 /* Accounts.framework in Frameworks */,
 				141EF12E178F9C6600B4DFC3 /* UIKit.framework in Frameworks */,
 				141EF130178F9C6600B4DFC3 /* Foundation.framework in Frameworks */,
 				141EF132178F9C6600B4DFC3 /* CoreGraphics.framework in Frameworks */,
@@ -102,6 +120,12 @@
 		141EF12C178F9C6600B4DFC3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7C2C370717907E3800133EF9 /* libsqlite3.0.dylib */,
+				7C2C37051790791E00133EF9 /* Accounts.framework */,
+				7C2C37031790791900133EF9 /* AdSupport.framework */,
+				7C2C37011790791200133EF9 /* Social.framework */,
+				7C2C36FF1790790B00133EF9 /* Security.framework */,
+				7C2C36FD179078F200133EF9 /* FacebookSDK.framework */,
 				141EF12D178F9C6600B4DFC3 /* UIKit.framework */,
 				141EF12F178F9C6600B4DFC3 /* Foundation.framework */,
 				141EF131178F9C6600B4DFC3 /* CoreGraphics.framework */,
@@ -112,12 +136,12 @@
 		141EF133178F9C6600B4DFC3 /* WhoStat */ = {
 			isa = PBXGroup;
 			children = (
+				141EF13C178F9C6600B4DFC3 /* WhoStatAppDelegate.h */,
+				141EF13D178F9C6600B4DFC3 /* WhoStatAppDelegate.m */,
 				141EF15B178FB3D400B4DFC3 /* QuestionMark.png */,
 				141EF15C178FB3D400B4DFC3 /* TitleViewController.h */,
 				141EF15D178FB3D400B4DFC3 /* TitleViewController.m */,
 				141EF15E178FB3D400B4DFC3 /* TitleViewController.xib */,
-				141EF13C178F9C6600B4DFC3 /* WhoStatAppDelegate.h */,
-				141EF13D178F9C6600B4DFC3 /* WhoStatAppDelegate.m */,
 				141EF14F178F9F4F00B4DFC3 /* FriendOptionCell.h */,
 				141EF150178F9F4F00B4DFC3 /* FriendOptionCell.m */,
 				141EF152178F9F8100B4DFC3 /* FriendOptionCell.xib */,
@@ -313,6 +337,10 @@
 		141EF148178F9C6600B4DFC3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../../Documents/FacebookSDK",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WhoStat/WhoStat-Prefix.pch";
 				INFOPLIST_FILE = "WhoStat/WhoStat-Info.plist";
@@ -324,6 +352,10 @@
 		141EF149178F9C6600B4DFC3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../../Documents/FacebookSDK",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WhoStat/WhoStat-Prefix.pch";
 				INFOPLIST_FILE = "WhoStat/WhoStat-Info.plist";

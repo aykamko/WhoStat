@@ -173,8 +173,9 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
     [[self statusTextView] setEditable:NO];
+    [[self correctFriendNameLabel] setText:[self correctFriendName]];
+    [[self correctFriendImageView] setImage:[self correctFriendImage]];
     [self.view bringSubviewToFront:_xOrOImageView];
     self.confirmGuessView.hidden = true;
     self.correctAnswerView.hidden = true;

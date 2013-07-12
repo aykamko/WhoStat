@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="confirmGuessView" destination="81" id="141"/>
                 <outlet property="correctAnswerView" destination="DNV-03-6aX" id="yep-v5-wJN"/>
+                <outlet property="correctFriendImageView" destination="Ref-lF-q2D" id="J6m-kw-C69"/>
                 <outlet property="correctFriendNameLabel" destination="XPo-UO-zvh" id="PoC-db-WCr"/>
                 <outlet property="flippingParentView" destination="4" id="274"/>
                 <outlet property="friendOptionsTableView" destination="49" id="62"/>

@@ -37,6 +37,7 @@ typedef enum DestinationViewOption: NSInteger {
         @property (weak, nonatomic) IBOutlet UIImageView *xOrOImageView;
         @property (strong, nonatomic) NSString *correctFriendName;
         @property (strong, nonatomic) UIImage *correctFriendImage;
+@property (weak, nonatomic) IBOutlet UIImageView *correctFriendImageView;
         @property (weak, nonatomic) IBOutlet UIButton *nextButton;
 // TableView below
 @property (weak, nonatomic) IBOutlet UITableView *friendOptionsTableView;

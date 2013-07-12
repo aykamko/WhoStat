@@ -9,11 +9,12 @@
 #import "GameViewController.h"
 #import "FriendOptionCell.h"
 
+
 @interface GameViewController () {
     NSIndexPath *_indexPathOfCurrentFriendSelection;
 }
 
--(void)flipFlippingParentViewWithBlock:(void (^)(BOOL))completion shouldFlipToFinalLayout:(BOOL)shouldFlipToFinalLayout;
+-(void)flipFlippingParentToView:(DestinationViewOption)destination withBlock:(void (^)(BOOL))completion;
 
 @end
 
@@ -24,7 +25,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // custom initializations
-        _displayingStatus = YES;
+        _currentlyDisplayedView = DestinationViewOptionStatus;
         NSDictionary *matt = @{@"image":[UIImage imageNamed:@"earth.jpeg"], @"name":@"Matt"};
         NSDictionary *dan = @{@"image":[UIImage imageNamed:@"eye.jpeg"], @"name":@"Dan"};
         NSDictionary *ashwin = @{@"image":[UIImage imageNamed:@"girl.jpg"], @"name":@"Ashwin"};
@@ -42,72 +43,85 @@
     
 }
 
--(void)flipFlippingParentViewWithBlock:(void (^)(BOOL))completion shouldFlipToFinalLayout:(BOOL)shouldFlipToFinalLayout{
+-(void)flipFlippingParentToView:(DestinationViewOption)destination withBlock:(void (^)(BOOL))completion {
+    if ([self currentlyDisplayedView] == destination)
+        return;
     [UIView transitionWithView:self.flippingParentView
-                      duration:1.0
-                       options:(_displayingStatus ? UIViewAnimationOptionTransitionFlipFromRight :
+                      duration:0.5
+                       options:((destination > [self currentlyDisplayedView]) ?
+                                UIViewAnimationOptionTransitionFlipFromRight :
                                 UIViewAnimationOptionTransitionFlipFromLeft)
                     animations: ^{
-                        if(shouldFlipToFinalLayout) {
-                            [[self nameLabel] setText:[self correctFriendName]];
-                            [[self topLabel] setText:@"The answer is:"];
-                            self.noButton.hidden = true;
-                            self.xOrOImageView.hidden = true;
-                            [self.guessImageView setImage:[self correctFriendImage]];
-                            self.yesButton.hidden = true;
-                            self.nextButton.hidden = false;
-                            
-                        }
-                        else if(_displayingStatus)
-                        {
-                            self.statusView.hidden = true;
-                            self.confirmGuessView.hidden = false;
-                        }
-                        else
-                        {
-                            self.statusView.hidden = false;
-                            self.confirmGuessView.hidden = true;
+                        switch (destination) {
+                            case DestinationViewOptionStatus:
+                                self.statusView.hidden = false;
+                                self.confirmGuessView.hidden = true;
+                                self.correctAnswerView.hidden = true;
+                                break;
+                            case DestinationViewOptionGuess:
+                                self.statusView.hidden = true;
+                                self.confirmGuessView.hidden = false;
+                                self.correctAnswerView.hidden = true;
+                                break;
+                            case DestinationViewOptionAnswer:
+                                self.statusView.hidden = true;
+                                self.confirmGuessView.hidden = true;
+                                self.correctAnswerView.hidden = false;
+                                break;
                         }
                     }
                     completion:completion];
+}
+- (IBAction)nextQuestion:(id)sender {
+    GameViewController *gameViewController = [[GameViewController alloc] initWithNibName:@"GameViewController" bundle:nil];
+    
+    [self.navigationController pushViewController:gameViewController animated:YES];
 }
 
 - (IBAction)cancelGuess:(id)sender {
     [[self friendOptionsTableView] setUserInteractionEnabled:YES];
     [[self friendOptionsTableView] deselectRowAtIndexPath:_indexPathOfCurrentFriendSelection animated:YES];
-    [self flipFlippingParentViewWithBlock:^(BOOL finished) {
+    [self flipFlippingParentToView:DestinationViewOptionStatus withBlock:^(BOOL finished) {
         if (finished) {
-            _displayingStatus = !_displayingStatus;
+            [self setCurrentlyDisplayedView:DestinationViewOptionStatus];
         }
-    } shouldFlipToFinalLayout:NO];
-    
+    }];
 }
 - (IBAction)confirmGuess:(id)sender {
-    NSString *nameOfGuessedFriend = [[self nameLabel] text];
-    NSLog(@"%@", nameOfGuessedFriend);
-    self.xOrOImageView.hidden = false;
+    NSString *nameOfGuessedFriend = [[self guessNameLabel] text];
+    
+    void (^completionBlock)(BOOL success) = ^void(BOOL success) {
+        double firstDelayInSeconds = 0.1;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(firstDelayInSeconds * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            
+            
+            
+            double delayInSeconds = 0.4;
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                [self flipFlippingParentToView:DestinationViewOptionAnswer withBlock:^(BOOL finished) {
+                    if (finished) {
+                        [self setCurrentlyDisplayedView:DestinationViewOptionAnswer];
+                    }
+                }];
+            });
+        });
+        
+    };
+    
+    
     if ([nameOfGuessedFriend isEqualToString:_correctFriendName]) {
-        [[self xOrOImageView] setImage:[UIImage imageNamed:@"checkmark.png"]];
-        [[self xOrOImageView] setNeedsDisplay];
-//        [UIView animateWithDuration:1 animations:^{
-//            [[self xOrOImageView] setImage:[UIImage imageNamed:@"checkmark.png"]];
-//            [[self xOrOImageView] setNeedsDisplay];
-//        }];
+        [UIView animateWithDuration:1 animations:^{
+            [[self xOrOImageView] setImage:[UIImage imageNamed:@"checkmark.png"]];
+        }
+                         completion:completionBlock];
     } else {
         [UIView animateWithDuration:1 animations:^{
             [[self xOrOImageView] setImage:[UIImage imageNamed:@"xmark.png"]];
-            [[self xOrOImageView] setNeedsDisplay];
-        }];
-    }
-    usleep(500000);
-    [self flipFlippingParentViewWithBlock:^(BOOL finished) {
-        if (finished) {
-            _displayingStatus = !_displayingStatus;
         }
-    } shouldFlipToFinalLayout:YES];
-    self.xOrOImageView.hidden = false;
-    
-    
+                         completion:completionBlock];
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -115,12 +129,12 @@
     NSDictionary *guessedFriendInfo = [[self friendOptions] objectAtIndex:[indexPath row]];
     _indexPathOfCurrentFriendSelection = indexPath;
     [[self guessImageView] setImage:guessedFriendInfo[@"image"]];
-    [[self nameLabel] setText:guessedFriendInfo[@"name"]];
-    [self flipFlippingParentViewWithBlock:^(BOOL finished) {
+    [[self guessNameLabel] setText:guessedFriendInfo[@"name"]];
+    [self flipFlippingParentToView:DestinationViewOptionGuess withBlock:^(BOOL finished) {
         if (finished) {
-            _displayingStatus = !_displayingStatus;
+            [self setCurrentlyDisplayedView:DestinationViewOptionGuess];
         }
-    } shouldFlipToFinalLayout:NO];
+    }];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -143,7 +157,6 @@
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
     NSLog(@"The view will appear");
-    self.nextButton.hidden = true;
     [[self confirmGuessView] setHidden:YES];
     _friendOptionsTableView.scrollEnabled = NO;
     [[self friendOptionsTableView] setDelegate:self];
@@ -162,6 +175,9 @@
     // Do any additional setup after loading the view from its nib.
     
     [[self statusTextView] setEditable:NO];
+    [self.view bringSubviewToFront:_xOrOImageView];
+    self.confirmGuessView.hidden = true;
+    self.correctAnswerView.hidden = true;
     
     UINib *nib = [UINib nibWithNibName:@"FriendOptionCell" bundle:nil];
     

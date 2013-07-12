@@ -22,6 +22,7 @@
 @property (strong, nonatomic) NSArray *friendOptions;
 @property (strong, nonatomic) NSString *correctFriendName;
 @property (strong, nonatomic) UIImage *correctFriendImage;
+@property (weak, nonatomic) IBOutlet UITextView *statusTextView;
 
 @property (weak, nonatomic) IBOutlet UIButton *yesButton;
 @property (weak, nonatomic) IBOutlet UIButton *noButton;

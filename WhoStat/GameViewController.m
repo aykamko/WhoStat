@@ -85,13 +85,18 @@
 - (IBAction)confirmGuess:(id)sender {
     NSString *nameOfGuessedFriend = [[self nameLabel] text];
     NSLog(@"%@", nameOfGuessedFriend);
+    self.xOrOImageView.hidden = false;
     if ([nameOfGuessedFriend isEqualToString:_correctFriendName]) {
-        [UIView animateWithDuration:1 animations:^{
-            [[self xOrOImageView] setImage:[UIImage imageNamed:@"checkmark.png"]];
-        }];
+        [[self xOrOImageView] setImage:[UIImage imageNamed:@"checkmark.png"]];
+        [[self xOrOImageView] setNeedsDisplay];
+//        [UIView animateWithDuration:1 animations:^{
+//            [[self xOrOImageView] setImage:[UIImage imageNamed:@"checkmark.png"]];
+//            [[self xOrOImageView] setNeedsDisplay];
+//        }];
     } else {
-        [UIView animateWithDuration:0 animations:^{
+        [UIView animateWithDuration:1 animations:^{
             [[self xOrOImageView] setImage:[UIImage imageNamed:@"xmark.png"]];
+            [[self xOrOImageView] setNeedsDisplay];
         }];
     }
     usleep(500000);
@@ -155,6 +160,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    [[self statusTextView] setEditable:NO];
     
     UINib *nib = [UINib nibWithNibName:@"FriendOptionCell" bundle:nil];
     

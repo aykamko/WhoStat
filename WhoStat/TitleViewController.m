@@ -160,7 +160,9 @@
 
 - (void)didGetAllData
 {
-    GameViewController *gameViewController = [[GameViewController alloc] initWithNibName:@"GameViewController" bundle:nil];
+    GameViewController *gameViewController = [[GameViewController alloc] initWithNibName:@"GameViewController"
+                                                                                  bundle:nil];
+    NSLog(@"%@", gameViewController.statusTextView.text);
     [gameViewController setCurrentStatus:_currentStatus];
     [[gameViewController statusTextView] setText:_currentStatus];
     [gameViewController setCorrectFriendName:[_correctFriendDict objectForKey:@"name"]];

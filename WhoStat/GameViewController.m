@@ -133,12 +133,12 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSLog(@"entered tableview:numberrowsinsection:");
+    // NSLog(@"entered tableview:numberrowsinsection:");
     return 5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"entered tableView:cellForRowAtIndexPath:");
+    // NSLog(@"entered tableView:cellForRowAtIndexPath:");
     FriendOptionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FriendOptionCell"];
     
     [cell setController:self];
@@ -158,6 +158,7 @@
     [[self friendOptionsTableView] setDelegate:self];
     [[self friendOptionsTableView] setDataSource:self];
     [[self friendOptionsTableView] reloadData];
+    [_statusTextView setText:_currentStatus];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

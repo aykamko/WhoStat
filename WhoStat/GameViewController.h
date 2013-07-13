@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+
 typedef enum DestinationViewOption: NSInteger {
     DestinationViewOptionStatus = 0,
     DestinationViewOptionGuess = 1,

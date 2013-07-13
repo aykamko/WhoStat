@@ -34,6 +34,7 @@
         _correctFriendName = @"Dan";
         _correctFriendImage = [UIImage imageNamed:@"eye.jpeg"];
         _friendOptions = [[NSArray alloc] initWithObjects:matt, george, dan, ashwin, aleks, nil];
+        [[self guessImageView] setImage:nil];
     }
     return self;
 }
@@ -69,8 +70,7 @@
                                 self.correctAnswerView.hidden = false;
                                 break;
                         }
-                    }
-                    completion:completion];
+                    } completion:completion];
 }
 - (IBAction)nextQuestion:(id)sender {
     GameViewController *gameViewController = [[GameViewController alloc] initWithNibName:@"GameViewController" bundle:nil];
@@ -110,9 +110,8 @@
         
     };
     
-    
     if ([nameOfGuessedFriend isEqualToString:_correctFriendName]) {
-        [UIView animateWithDuration:1 animations:^{
+        [UIImageView animateWithDuration:1 animations:^{
             [[self xOrOImageView] setImage:[UIImage imageNamed:@"checkmark.png"]];
         }
                          completion:completionBlock];
@@ -138,12 +137,12 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSLog(@"entered tableview:numberrowsinsection:");
+    // NSLog(@"entered tableview:numberrowsinsection:");
     return 5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"entered tableView:cellForRowAtIndexPath:");
+    // NSLog(@"entered tableView:cellForRowAtIndexPath:");
     FriendOptionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FriendOptionCell"];
     
     [cell setController:self];
@@ -162,6 +161,7 @@
     [[self friendOptionsTableView] setDelegate:self];
     [[self friendOptionsTableView] setDataSource:self];
     [[self friendOptionsTableView] reloadData];
+    [_statusTextView setText:_currentStatus];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

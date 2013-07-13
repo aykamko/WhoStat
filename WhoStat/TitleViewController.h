@@ -11,5 +11,9 @@
 @interface TitleViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UIImageView *questionMark;
 @property (strong, nonatomic) IBOutlet UIButton *playButton;
-@property (weak, nonatomic) IBOutlet UIButton *playGame;
+
+@property (strong, nonatomic) NSDictionary *correctFriendDict;
+@property (strong, nonatomic) NSString *currentStatus;
+@property (strong, nonatomic) NSArray *friendOptions;
+
 @end

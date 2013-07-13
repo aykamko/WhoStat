@@ -205,11 +205,6 @@
 				CLASSPREFIX = WhoStat;
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Dan Schlosser";
-				TargetAttributes = {
-					141EF129178F9C6600B4DFC3 = {
-						DevelopmentTeam = 8R7UFRAAU8;
-					};
-				};
 			};
 			buildConfigurationList = 141EF125178F9C6600B4DFC3 /* Build configuration list for PBXProject "WhoStat" */;
 			compatibilityVersion = "Xcode 3.2";

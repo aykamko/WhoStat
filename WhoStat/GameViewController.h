@@ -8,30 +8,40 @@
 
 #import <UIKit/UIKit.h>
 
+
+typedef enum DestinationViewOption: NSInteger {
+    DestinationViewOptionStatus = 0,
+    DestinationViewOptionGuess = 1,
+    DestinationViewOptionAnswer = 2,
+} DestinationViewOption;
+
 @interface GameViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
-@property (weak, nonatomic) IBOutlet UITableView *friendOptionsTableView;
-@property (weak, nonatomic) IBOutlet UIView *statusView;
-@property (weak, nonatomic) IBOutlet UITextView *statusTextView;
-@property (weak, nonatomic)  NSString *currentStatus;
-@property (weak, nonatomic) IBOutlet UIView *confirmGuessView;
+
+// Parent view for top panel that filps between three subviews
 @property (weak, nonatomic) IBOutlet UIView *flippingParentView;
-@property (weak, nonatomic) IBOutlet UIView *flippingImageView;
-@property (nonatomic) BOOL displayingStatus;
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (strong, nonatomic) IBOutlet UIImageView *guessImageView;
-@property (strong, nonatomic) NSArray *friendOptions;
-@property (strong, nonatomic) NSString *correctFriendName;
-@property (strong, nonatomic) UIImage *correctFriendImage;
-
-@property (strong, nonatomic) GameViewController *flippedView;
-
-@property (weak, nonatomic) IBOutlet UIButton *yesButton;
-@property (weak, nonatomic) IBOutlet UIButton *noButton;
-@property (weak, nonatomic) IBOutlet UIButton *nextButton;
-@property (weak, nonatomic) IBOutlet UILabel *topLabel;
-@property (strong, nonatomic) IBOutlet UIImageView *xOrOImageView;
-
-
+    //Which of the three views is displayed
+    @property (nonatomic) DestinationViewOption currentlyDisplayedView;
+    // The status
+    @property (weak, nonatomic) IBOutlet UIView *statusView;
+        @property (weak, nonatomic) NSString *currentStatus;
+        @property (weak, nonatomic) IBOutlet UITextView *statusTextView;
+    // User confirms guess
+    @property (weak, nonatomic) IBOutlet UIView *confirmGuessView;
+        @property (weak, nonatomic) IBOutlet UIImageView *guessImageView;
+        @property (weak, nonatomic) IBOutlet UILabel *guessNameLabel;
+        @property (weak, nonatomic) IBOutlet UIButton *yesButton;
+        @property (weak, nonatomic) IBOutlet UIButton *noButton;
+    // Correct Answer
+    @property (strong, nonatomic) IBOutlet UIView *correctAnswerView;
+        @property (weak, nonatomic) IBOutlet UILabel *correctFriendNameLabel;
+        @property (weak, nonatomic) IBOutlet UIImageView *xOrOImageView;
+        @property (strong, nonatomic) NSString *correctFriendName;
+        @property (strong, nonatomic) UIImage *correctFriendImage;
+@property (weak, nonatomic) IBOutlet UIImageView *correctFriendImageView;
+        @property (weak, nonatomic) IBOutlet UIButton *nextButton;
+// TableView below
+@property (weak, nonatomic) IBOutlet UITableView *friendOptionsTableView;
+    @property (strong, nonatomic) NSArray *friendOptions;
 
 @end

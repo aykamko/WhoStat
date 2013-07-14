@@ -14,6 +14,6 @@
 
 @property (strong, nonatomic) NSDictionary *correctFriendDict;
 @property (strong, nonatomic) NSString *currentStatus;
-@property (strong, nonatomic) NSArray *friendOptions;
+@property (strong, nonatomic) NSMutableArray *friendOptions;
 
 @end

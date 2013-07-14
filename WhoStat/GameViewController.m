@@ -25,11 +25,11 @@
     if (self) {
         // custom initializations
         _displayingStatus = YES;
-        NSDictionary *matt = @{@"image":[UIImage imageNamed:@"earth.jpeg"], @"name":@"Matt"};
-        NSDictionary *dan = @{@"image":[UIImage imageNamed:@"eye.jpeg"], @"name":@"Dan"};
-        NSDictionary *ashwin = @{@"image":[UIImage imageNamed:@"girl.jpg"], @"name":@"Ashwin"};
-        NSDictionary *aleks = @{@"image":[UIImage imageNamed:@"man.png"], @"name":@"Aleks"};
-        NSDictionary *george = @{@"image":[UIImage imageNamed:@"camera.jpg"], @"name":@"George"};
+        NSDictionary *matt = @{@"pic_small":[UIImage imageNamed:@"earth.jpeg"], @"name":@"Matt"};
+        NSDictionary *dan = @{@"pic_small":[UIImage imageNamed:@"eye.jpeg"], @"name":@"Dan"};
+        NSDictionary *ashwin = @{@"pic_small":[UIImage imageNamed:@"girl.jpg"], @"name":@"Ashwin"};
+        NSDictionary *aleks = @{@"pic_small":[UIImage imageNamed:@"man.png"], @"name":@"Aleks"};
+        NSDictionary *george = @{@"pic_small":[UIImage imageNamed:@"camera.jpg"], @"name":@"George"};
         _correctFriendName = @"Dan";
         _correctFriendImage = [UIImage imageNamed:@"eye.jpeg"];
         _friendOptions = [[NSArray alloc] initWithObjects:matt, george, dan, ashwin, aleks, nil];
@@ -144,6 +144,7 @@
     [cell setController:self];
 //    [cell setTableView:tableView];
     NSDictionary *friendInfo = [[self friendOptions] objectAtIndex:[indexPath row]];
+    NSLog(@"%@", friendInfo);
     [[cell nameLabel] setText:friendInfo[@"name"]];
     [[cell thumbnailView] setImage:friendInfo[@"image"]];
     return cell;

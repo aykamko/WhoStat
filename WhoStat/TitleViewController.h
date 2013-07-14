@@ -16,4 +16,8 @@
 @property (strong, nonatomic) NSString *currentStatus;
 @property (strong, nonatomic) NSMutableArray *friendOptions;
 
+@property (strong, nonatomic) NSMutableArray *dataQueue;
+
+- (void)startScrapingFacebookData;
+
 @end

@@ -28,6 +28,11 @@
     // Override point for customization after application launch.
     
     TitleViewController *titleViewController = [[TitleViewController alloc] initWithNibName:@"TitleViewController" bundle:nil];
+    
+    if (FBSession.activeSession.isOpen) {
+        [titleViewController startScrapingFacebookData];
+    }
+    
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:titleViewController];
     [navController setNavigationBarHidden:YES];
     [[self window] setRootViewController:navController];

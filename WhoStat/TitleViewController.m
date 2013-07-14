@@ -27,8 +27,9 @@
     }
     return self;
 }
-- (IBAction)playGame:(id)sender {
-    
+
+- (void)startScrapingFacebookData
+{
     if (FBSession.activeSession.isOpen) {
         NSLog(@"logged in");
     } else {
@@ -52,7 +53,10 @@
                                            allowLoginUI:YES
                                       completionHandler:handler];
     }
-    
+}
+
+- (IBAction)playGame:(id)sender {
+    [self startScrapingFacebookData];
 }
 
 - (void)startConnectionToScrapeStatus
@@ -63,7 +67,6 @@
         @"SELECT uid2 FROM friend WHERE uid1 = me()"
     @") order by rand() limit 1";
     
-    //NSLog(@"%@", query);
     NSDictionary *queryParam = @{ @"q": query };
     FBRequestHandler handler =
     ^(FBRequestConnection *connection, id result, NSError *error) {
@@ -115,7 +118,7 @@
             @"(SELECT uid2 FROM friend WHERE uid1 = me()) "
         @"ORDER BY rand() LIMIT 4\""
     @"}",
-                       //_currentStatusDict[@"uid"],
+//                       _currentStatusDict[@"uid"],
                        _currentStatusDict[@"uid"]];
 
     NSDictionary *queryParam = @{ @"q": query };
@@ -137,15 +140,16 @@
                                 error:(NSError *)error
 {
     if (error) {
-        //NSLog(@"%@", error);
         NSLog(@"friend data request failed");
     } else {
         _friendOptions = [[NSMutableArray alloc] init];
         NSArray *rawData = result[@"data"];
         NSMutableDictionary *correctFriendDict =
             rawData[0][@"fql_result_set"][0];
-        //NSArray *randMutualFriendArray =
-        //    rawData[1][@"fql_result_set"];
+        
+//        NSArray *randMutualFriendArray =
+//            rawData[1][@"fql_result_set"];
+        
         NSArray *randFriendArray =
             rawData[1][@"fql_result_set"];
         
@@ -160,8 +164,11 @@
         UIImage *bigImage = [UIImage imageWithData:bigImageData];
         correctFriendDict[@"pic_square"] = squareImage;
         correctFriendDict[@"pic_big"] = bigImage;
+        _correctFriendDict = correctFriendDict;
         
         [_friendOptions addObject:correctFriendDict];
+        
+        /* Getting mutual friends is hard. :( */
         
 //        for (NSMutableDictionary *userDict in randMutualFriendArray) {
 //            NSURL *squareImageURL = [NSURL
@@ -198,7 +205,7 @@
             
             [_friendOptions addObject:userDict];
         }
-        // Shuffle's the array
+        // Shuffles the array
         [_friendOptions shuffle];
         [self didGetAllData];
     }
@@ -206,19 +213,16 @@
 
 - (void)didGetAllData
 {
-    NSLog(@"%@", _currentStatus);
-    NSLog(@"%@", _correctFriendDict);
-    NSLog(@"%@", _friendOptions);
+    
     GameViewController *gameViewController =
         [[GameViewController alloc]
          initWithNibName:@"GameViewController"
          bundle:nil];
     [gameViewController setCurrentStatus:_currentStatus];
-    [[gameViewController statusTextView] setText:_currentStatus];
-    [gameViewController setCorrectFriendName:[_correctFriendDict
-                                              objectForKey:@"name"]];
+    [gameViewController setCorrectFriendName:_correctFriendDict[@"name"]];
+    [gameViewController setCorrectFriendImage:_correctFriendDict[@"pic_big"]];
     [gameViewController setFriendOptions:_friendOptions];
-    
+
     [self.navigationController pushViewController:gameViewController
                                          animated:YES];
 }

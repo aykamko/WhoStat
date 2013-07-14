@@ -31,6 +31,7 @@
 		14F5BC0D178FE462008B8FEE /* man.png in Resources */ = {isa = PBXBuildFile; fileRef = 14F5BC0C178FE462008B8FEE /* man.png */; };
 		14F5BC0F178FF885008B8FEE /* checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 14F5BC0E178FF885008B8FEE /* checkmark.png */; };
 		14F5BC11178FF88C008B8FEE /* xmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 14F5BC10178FF88C008B8FEE /* xmark.png */; };
+		7C0F488F179297C30097161F /* NSMutableArray+Shuffling.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C0F488E179296B00097161F /* NSMutableArray+Shuffling.m */; };
 		7C2C36FE179078F200133EF9 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C2C36FD179078F200133EF9 /* FacebookSDK.framework */; };
 		7C2C37001790790B00133EF9 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C2C36FF1790790B00133EF9 /* Security.framework */; };
 		7C2C37021790791200133EF9 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C2C37011790791200133EF9 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -72,6 +73,8 @@
 		14F5BC0C178FE462008B8FEE /* man.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = man.png; sourceTree = "<group>"; };
 		14F5BC0E178FF885008B8FEE /* checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkmark.png; sourceTree = "<group>"; };
 		14F5BC10178FF88C008B8FEE /* xmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xmark.png; sourceTree = "<group>"; };
+		7C0F488D179296B00097161F /* NSMutableArray+Shuffling.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Shuffling.h"; sourceTree = "<group>"; };
+		7C0F488E179296B00097161F /* NSMutableArray+Shuffling.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Shuffling.m"; sourceTree = "<group>"; };
 		7C2C36FD179078F200133EF9 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		7C2C36FF1790790B00133EF9 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		7C2C37011790791200133EF9 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
@@ -149,6 +152,8 @@
 				14F5BC02178FDC54008B8FEE /* FlippingViewController.m */,
 				141EF14A178F9C8900B4DFC3 /* GameViewController.h */,
 				141EF14B178F9C8900B4DFC3 /* GameViewController.m */,
+				7C0F488D179296B00097161F /* NSMutableArray+Shuffling.h */,
+				7C0F488E179296B00097161F /* NSMutableArray+Shuffling.m */,
 				141EF14C178F9C8900B4DFC3 /* GameViewController.xib */,
 				14F5BC04178FE3B3008B8FEE /* earth.jpeg */,
 				14F5BC06178FE40C008B8FEE /* eye.jpeg */,
@@ -258,6 +263,7 @@
 				141EF14D178F9C8900B4DFC3 /* GameViewController.m in Sources */,
 				141EF151178F9F4F00B4DFC3 /* FriendOptionCell.m in Sources */,
 				141EF161178FB3D400B4DFC3 /* TitleViewController.m in Sources */,
+				7C0F488F179297C30097161F /* NSMutableArray+Shuffling.m in Sources */,
 				14F5BC03178FDC54008B8FEE /* FlippingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

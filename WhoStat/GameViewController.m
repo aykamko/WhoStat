@@ -26,11 +26,11 @@
     if (self) {
         // custom initializations
         _currentlyDisplayedView = DestinationViewOptionStatus;
-        NSDictionary *matt = @{@"image":[UIImage imageNamed:@"earth.jpeg"], @"name":@"Matt"};
-        NSDictionary *dan = @{@"image":[UIImage imageNamed:@"eye.jpeg"], @"name":@"Dan"};
-        NSDictionary *ashwin = @{@"image":[UIImage imageNamed:@"girl.jpg"], @"name":@"Ashwin"};
-        NSDictionary *aleks = @{@"image":[UIImage imageNamed:@"man.png"], @"name":@"Aleks"};
-        NSDictionary *george = @{@"image":[UIImage imageNamed:@"camera.jpg"], @"name":@"George"};
+        NSDictionary *matt = @{@"pic_square":[UIImage imageNamed:@"earth.jpeg"], @"name":@"Matt"};
+        NSDictionary *dan = @{@"pic_square":[UIImage imageNamed:@"eye.jpeg"], @"name":@"Dan"};
+        NSDictionary *ashwin = @{@"pic_square":[UIImage imageNamed:@"girl.jpg"], @"name":@"Ashwin"};
+        NSDictionary *aleks = @{@"pic_square":[UIImage imageNamed:@"man.png"], @"name":@"Aleks"};
+        NSDictionary *george = @{@"pic_square":[UIImage imageNamed:@"camera.jpg"], @"name":@"George"};
         _correctFriendName = @"Dan";
         _correctFriendImage = [UIImage imageNamed:@"eye.jpeg"];
         _friendOptions = [[NSArray alloc] initWithObjects:matt, george, dan, ashwin, aleks, nil];
@@ -127,7 +127,7 @@
     [[self friendOptionsTableView] setUserInteractionEnabled:NO];
     NSDictionary *guessedFriendInfo = [[self friendOptions] objectAtIndex:[indexPath row]];
     _indexPathOfCurrentFriendSelection = indexPath;
-    [[self guessImageView] setImage:guessedFriendInfo[@"image"]];
+    [[self guessImageView] setImage:guessedFriendInfo[@"pic_big"]];
     [[self guessNameLabel] setText:guessedFriendInfo[@"name"]];
     [self flipFlippingParentToView:DestinationViewOptionGuess withBlock:^(BOOL finished) {
         if (finished) {
@@ -148,15 +148,15 @@
     [cell setController:self];
 //    [cell setTableView:tableView];
     NSDictionary *friendInfo = [[self friendOptions] objectAtIndex:[indexPath row]];
-    NSLog(@"%@", friendInfo);
+    //NSLog(@"%@", friendInfo);
     [[cell nameLabel] setText:friendInfo[@"name"]];
-    [[cell thumbnailView] setImage:friendInfo[@"image"]];
+    [[cell thumbnailView] setImage:friendInfo[@"pic_square"]];
     return cell;
 }
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
-    NSLog(@"The view will appear");
+    //NSLog(@"The view will appear");
     [[self confirmGuessView] setHidden:YES];
     _friendOptionsTableView.scrollEnabled = NO;
     [[self friendOptionsTableView] setDelegate:self];

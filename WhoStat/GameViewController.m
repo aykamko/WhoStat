@@ -51,6 +51,13 @@
 - (void)setUpNextRound
 {
     _currentRound = [[GameRoundQueue sharedQueue] popRound];
+    while (!_currentRound) {
+        double delayInSeconds = 0.5;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            _currentRound = [[GameRoundQueue sharedQueue] popRound];
+        });
+    }
     [self setCorrectFriendName:_currentRound[@"correctName"]];
     [self setCorrectFriendImage:_currentRound[@"correctPic"]];
     [self setCurrentStatus:_currentRound[@"status"]];
@@ -189,13 +196,11 @@
     [self setUpNextRound];
     if (([[GameRoundQueue sharedQueue] queueLength] < 3) &&
         (![[FBRequestController sharedController] isScraping])) {
-        [[FBRequestController sharedController] startScrapingFacebookData];
-        
-        // Run in background
-        //        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,
-        //                                                 (unsigned long)NULL), ^(void) {
-        //            [[FBRequestController sharedController] startScrapingFacebookData];
-        //        });
+        dispatch_queue_t queue =
+            dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
+        dispatch_async(queue, ^(void){
+            [[FBRequestController sharedController] startScrapingFacebookData];
+        });
     }
     [[self correctFriendNameLabel] setText:[self correctFriendName]];
     [[self correctFriendImageView] setImage:[self correctFriendImage]];

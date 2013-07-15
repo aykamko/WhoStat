@@ -8,6 +8,8 @@
 
 #import "WhoStatAppDelegate.h"
 #import "TitleViewController.h"
+#import "FBRequestController.h"
+#import "GameRoundQueue.h"
 
 @implementation WhoStatAppDelegate
 
@@ -22,18 +24,23 @@
                   sourceApplication:sourceApplication];
 }
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+- (BOOL)application:(UIApplication *)application
+didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window = [[UIWindow alloc]
+                   initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
-    TitleViewController *titleViewController = [[TitleViewController alloc] initWithNibName:@"TitleViewController" bundle:nil];
+    (void) [[FBRequestController alloc] init];
+    (void) [[GameRoundQueue alloc] init];
+    TitleViewController *titleViewController =
+        [[TitleViewController alloc]
+         initWithNibName:@"TitleViewController"
+         bundle:nil];
     
-    if (FBSession.activeSession.isOpen) {
-        [titleViewController startScrapingFacebookData];
-    }
-    
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:titleViewController];
+    UINavigationController *navController =
+        [[UINavigationController alloc]
+         initWithRootViewController:titleViewController];
     [navController setNavigationBarHidden:YES];
     [[self window] setRootViewController:navController];
     

@@ -7,17 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FBRequestController.h"
 
-@interface TitleViewController : UIViewController
-@property (strong, nonatomic) IBOutlet UIImageView *questionMark;
-@property (strong, nonatomic) IBOutlet UIButton *playButton;
-
-@property (strong, nonatomic) NSDictionary *correctFriendDict;
-@property (strong, nonatomic) NSString *currentStatus;
-@property (strong, nonatomic) NSMutableArray *friendOptions;
-
-@property (strong, nonatomic) NSMutableArray *dataQueue;
-
-- (void)startScrapingFacebookData;
+@interface TitleViewController : UIViewController <FBRequestControllerDelegate>
 
 @end

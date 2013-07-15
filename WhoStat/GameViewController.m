@@ -8,13 +8,16 @@
 
 #import "GameViewController.h"
 #import "FriendOptionCell.h"
+#import "GameRoundQueue.h"
 
-
-@interface GameViewController () {
+@interface GameViewController ()
+{
     NSIndexPath *_indexPathOfCurrentFriendSelection;
 }
 
--(void)flipFlippingParentToView:(DestinationViewOption)destination withBlock:(void (^)(BOOL))completion;
+@property (strong, nonatomic) NSDictionary *currentRound;
+
+- (void)flipFlippingParentToView:(DestinationViewOption)destination withBlock:(void (^)(BOOL))completion;
 
 @end
 
@@ -42,6 +45,15 @@
 - (id)init {
     return [self initWithNibName:@"GameViewController" bundle:nil];
     
+}
+
+- (void)setUpNextRound
+{
+    _currentRound = [[GameRoundQueue sharedQueue] popRound];
+    [self setCorrectFriendName:_currentRound[@"correctName"]];
+    [self setCorrectFriendImage:_currentRound[@"correctPic"]];
+    [self setCurrentStatus:_currentRound[@"status"]];
+    [self setFriendOptions:_currentRound[@"friendOptions"]];
 }
 
 -(void)flipFlippingParentToView:(DestinationViewOption)destination withBlock:(void (^)(BOOL))completion {
@@ -107,7 +119,6 @@
                 }];
             });
         });
-        
     };
     
     if ([nameOfGuessedFriend isEqualToString:_correctFriendName]) {
@@ -174,7 +185,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [[self statusTextView] setEditable:NO];
+    [self setUpNextRound];
     [[self correctFriendNameLabel] setText:[self correctFriendName]];
     [[self correctFriendImageView] setImage:[self correctFriendImage]];
     [self.view bringSubviewToFront:_xOrOImageView];

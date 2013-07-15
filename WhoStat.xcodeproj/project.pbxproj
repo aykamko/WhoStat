@@ -38,6 +38,9 @@
 		7C2C37041790791900133EF9 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C2C37031790791900133EF9 /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		7C2C37061790791E00133EF9 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C2C37051790791E00133EF9 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		7C2C370817907E3800133EF9 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C2C370717907E3800133EF9 /* libsqlite3.0.dylib */; };
+		7CADDB96179362E7006ED239 /* FBRequestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C0F489117935E100097161F /* FBRequestController.m */; };
+		7CADDB9C179370C3006ED239 /* GameRoundQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CADDB9B179370C3006ED239 /* GameRoundQueue.m */; };
+		7CADDBA9179377DB006ED239 /* NSArray+ContainsClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CADDBA8179377DB006ED239 /* NSArray+ContainsClass.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,12 +78,18 @@
 		14F5BC10178FF88C008B8FEE /* xmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xmark.png; sourceTree = "<group>"; };
 		7C0F488D179296B00097161F /* NSMutableArray+Shuffling.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Shuffling.h"; sourceTree = "<group>"; };
 		7C0F488E179296B00097161F /* NSMutableArray+Shuffling.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Shuffling.m"; sourceTree = "<group>"; };
+		7C0F489017935E100097161F /* FBRequestController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FBRequestController.h; sourceTree = "<group>"; };
+		7C0F489117935E100097161F /* FBRequestController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FBRequestController.m; sourceTree = "<group>"; };
 		7C2C36FD179078F200133EF9 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		7C2C36FF1790790B00133EF9 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		7C2C37011790791200133EF9 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		7C2C37031790791900133EF9 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		7C2C37051790791E00133EF9 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		7C2C370717907E3800133EF9 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		7CADDB9A179370C3006ED239 /* GameRoundQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameRoundQueue.h; sourceTree = "<group>"; };
+		7CADDB9B179370C3006ED239 /* GameRoundQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameRoundQueue.m; sourceTree = "<group>"; };
+		7CADDBA7179377DB006ED239 /* NSArray+ContainsClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSArray+ContainsClass.h"; path = "../NSArray+ContainsClass.h"; sourceTree = "<group>"; };
+		7CADDBA8179377DB006ED239 /* NSArray+ContainsClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSArray+ContainsClass.m"; path = "../NSArray+ContainsClass.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +154,10 @@
 				141EF15C178FB3D400B4DFC3 /* TitleViewController.h */,
 				141EF15D178FB3D400B4DFC3 /* TitleViewController.m */,
 				141EF15E178FB3D400B4DFC3 /* TitleViewController.xib */,
+				7C0F489017935E100097161F /* FBRequestController.h */,
+				7C0F489117935E100097161F /* FBRequestController.m */,
+				7CADDB9A179370C3006ED239 /* GameRoundQueue.h */,
+				7CADDB9B179370C3006ED239 /* GameRoundQueue.m */,
 				141EF14F178F9F4F00B4DFC3 /* FriendOptionCell.h */,
 				141EF150178F9F4F00B4DFC3 /* FriendOptionCell.m */,
 				141EF152178F9F8100B4DFC3 /* FriendOptionCell.xib */,
@@ -152,9 +165,8 @@
 				14F5BC02178FDC54008B8FEE /* FlippingViewController.m */,
 				141EF14A178F9C8900B4DFC3 /* GameViewController.h */,
 				141EF14B178F9C8900B4DFC3 /* GameViewController.m */,
-				7C0F488D179296B00097161F /* NSMutableArray+Shuffling.h */,
-				7C0F488E179296B00097161F /* NSMutableArray+Shuffling.m */,
 				141EF14C178F9C8900B4DFC3 /* GameViewController.xib */,
+				7CADDBA31793713D006ED239 /* Extensions */,
 				14F5BC04178FE3B3008B8FEE /* earth.jpeg */,
 				14F5BC06178FE40C008B8FEE /* eye.jpeg */,
 				14F5BC08178FE42A008B8FEE /* girl.jpg */,
@@ -179,6 +191,17 @@
 				141EF143178F9C6600B4DFC3 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7CADDBA31793713D006ED239 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7C0F488D179296B00097161F /* NSMutableArray+Shuffling.h */,
+				7C0F488E179296B00097161F /* NSMutableArray+Shuffling.m */,
+				7CADDBA7179377DB006ED239 /* NSArray+ContainsClass.h */,
+				7CADDBA8179377DB006ED239 /* NSArray+ContainsClass.m */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,10 +284,13 @@
 				141EF13A178F9C6600B4DFC3 /* main.m in Sources */,
 				141EF13E178F9C6600B4DFC3 /* WhoStatAppDelegate.m in Sources */,
 				141EF14D178F9C8900B4DFC3 /* GameViewController.m in Sources */,
+				7CADDB9C179370C3006ED239 /* GameRoundQueue.m in Sources */,
 				141EF151178F9F4F00B4DFC3 /* FriendOptionCell.m in Sources */,
 				141EF161178FB3D400B4DFC3 /* TitleViewController.m in Sources */,
+				7CADDB96179362E7006ED239 /* FBRequestController.m in Sources */,
 				7C0F488F179297C30097161F /* NSMutableArray+Shuffling.m in Sources */,
 				14F5BC03178FDC54008B8FEE /* FlippingViewController.m in Sources */,
+				7CADDBA9179377DB006ED239 /* NSArray+ContainsClass.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

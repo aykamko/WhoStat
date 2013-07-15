@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "FBRequestController.h"
-@class WhoStatAppDelegate;
 
 @interface TitleViewController : UIViewController <FBRequestControllerDelegate>
 

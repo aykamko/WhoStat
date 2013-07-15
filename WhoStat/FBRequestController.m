@@ -50,7 +50,11 @@
                 NSLog(@"successful login!");
                 NSMutableDictionary *round = [[NSMutableDictionary alloc] init];
                 _isScraping = YES;
-                [self startConnectionToScrapeStatusIntoRound:round];
+                dispatch_queue_t queue =
+                    dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
+                dispatch_async(queue, ^(void){
+                    [self startConnectionToScrapeStatusIntoRound:round];
+                });
             }
         };
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -72,10 +76,14 @@
     NSDictionary *queryParam = @{ @"q": query };
     FBRequestHandler handler =
     ^(FBRequestConnection *connection, id result, NSError *error) {
+        dispatch_queue_t queue =
+            dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
+        dispatch_async(queue, ^(void){
         [self requestForStatusCompleted:connection
                                   round:round
                                  result:result
                                   error:error];
+        });
     };
     
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -101,7 +109,11 @@
         round[@"status"] = statusDict[@"message"];
         round[@"correctID"] = statusDict[@"uid"];
         
-        [self startConnectionToScrapeFriendDataIntoRound:round];
+        dispatch_queue_t queue =
+            dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
+        dispatch_async(queue, ^(void){
+            [self startConnectionToScrapeFriendDataIntoRound:round];
+        });
     }
     
 }
@@ -134,10 +146,14 @@
     NSDictionary *queryParam = @{ @"q": query };
     FBRequestHandler handler =
     ^(FBRequestConnection *connection, id result, NSError *error) {
+        dispatch_queue_t queue =
+            dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
+        dispatch_async(queue, ^(void){
         [self requestForFriendDataCompleted:connection
                                       round:round
                                      result:result
                                       error:error];
+        });
     };
     
     dispatch_async(dispatch_get_main_queue(), ^{

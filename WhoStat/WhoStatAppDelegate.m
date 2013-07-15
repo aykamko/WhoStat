@@ -7,9 +7,8 @@
 //
 
 #import "WhoStatAppDelegate.h"
+#import "WhoStatGlobalAppController.h"
 #import "TitleViewController.h"
-#import "FBRequestController.h"
-#import "GameRoundQueue.h"
 
 @implementation WhoStatAppDelegate
 
@@ -31,16 +30,19 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
                    initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
-    (void) [[FBRequestController alloc] init];
-    (void) [[GameRoundQueue alloc] init];
+    WhoStatGlobalAppController *globalAppController =
+        [[WhoStatGlobalAppController alloc] init];
+    
     TitleViewController *titleViewController =
         [[TitleViewController alloc]
          initWithNibName:@"TitleViewController"
          bundle:nil];
+    [titleViewController setDelegate:globalAppController];
     
     UINavigationController *navController =
         [[UINavigationController alloc]
          initWithRootViewController:titleViewController];
+    [navController setDelegate:globalAppController];
     [navController setNavigationBarHidden:YES];
     [[self window] setRootViewController:navController];
     

@@ -8,6 +8,8 @@
 
 #import "TitleViewController.h"
 #import "GameViewController.h"
+#import "WhoStatGlobalAppController.h"
+
 #import "WhoStatAppDelegate.h"
 #import "FBRequestController.h"
 #import "NSMutableArray+Shuffling.h"
@@ -33,32 +35,27 @@
 }
 
 - (IBAction)playGame:(id)sender {
-    if ([[GameRoundQueue sharedQueue] queueLength] == 0) {
-        [[FBRequestController sharedController] setDelegate:self];
-        [[FBRequestController sharedController] startScrapingFacebookData];
-    }
+    [self.delegate setUpGame];
 }
 
-- (void)didGetRoundData:(NSDictionary *)round {
-    
-    [[GameRoundQueue sharedQueue] pushRound:round];
-    if (([[GameRoundQueue sharedQueue] queueLength] < 3) &&
-        (![[FBRequestController sharedController] isScraping])) {
-        [[FBRequestController sharedController] startScrapingFacebookData];
-    }
+- (void)pushGameViewControllerWithRound:(NSDictionary *)round
+{
     if ([[self.navigationController viewControllers]
          containsClass:[GameViewController class]]) {
         return;
     }
     
     GameViewController *gameViewController =
-        [[GameViewController alloc]
-         initWithNibName:@"GameViewController"
-         bundle:nil];
+    [[GameViewController alloc]
+     initWithNibName:@"GameViewController"
+     bundle:nil];
+    [gameViewController setDelegate:[self delegate]];
+    [gameViewController setUpNextRound:round];
     
     [self.navigationController pushViewController:gameViewController
                                          animated:YES];
 }
+
 
 - (void)viewDidLoad
 {

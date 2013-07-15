@@ -8,7 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "FBRequestController.h"
+#import "GameViewController.h"
 
-@interface TitleViewController : UIViewController <FBRequestControllerDelegate>
+@protocol TitleViewControllerDelegate <NSObject>
+
+- (void)setUpGame;
+
+@end
+
+@interface TitleViewController : UIViewController
+
+@property (nonatomic, strong) id <TitleViewControllerDelegate, GameViewControllerDelegate> delegate;
+- (void)pushGameViewControllerWithRound:(NSDictionary *)round;
 
 @end

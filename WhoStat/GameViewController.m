@@ -8,7 +8,6 @@
 
 #import "GameViewController.h"
 #import "FriendOptionCell.h"
-#import "GameRoundQueue.h"
 #import "FBRequestController.h"
 
 @interface GameViewController ()
@@ -45,30 +44,33 @@
 
 - (id)init {
     return [self initWithNibName:@"GameViewController" bundle:nil];
-    
 }
 
-- (void)setUpNextRound
+- (void)setUpNextRound:(NSDictionary *)round
 {
-    _currentRound = [[GameRoundQueue sharedQueue] popRound];
-    while (!_currentRound) {
-        double delayInSeconds = 0.5;
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            _currentRound = [[GameRoundQueue sharedQueue] popRound];
-        });
-    }
+    _currentRound = round;
     [self setCorrectFriendName:_currentRound[@"correctName"]];
     [self setCorrectFriendImage:_currentRound[@"correctPic"]];
     [self setCurrentStatus:_currentRound[@"status"]];
     [self setFriendOptions:_currentRound[@"friendOptions"]];
+    
+    if (self.navigationController != nil) {
+        GameViewController *newGameViewController =
+            [[GameViewController alloc]
+             initWithNibName:@"GameViewController" bundle:nil];
+        [newGameViewController setDelegate:[self delegate]];
+        [newGameViewController setUpNextRound:round];
+        
+        [self.navigationController pushViewController:newGameViewController
+                                             animated:YES];
+    }
 }
 
 -(void)flipFlippingParentToView:(DestinationViewOption)destination withBlock:(void (^)(BOOL))completion {
     if ([self currentlyDisplayedView] == destination)
         return;
     [UIView transitionWithView:self.flippingParentView
-                      duration:0.5
+                      duration:0.0
                        options:((destination > [self currentlyDisplayedView]) ?
                                 UIViewAnimationOptionTransitionFlipFromRight :
                                 UIViewAnimationOptionTransitionFlipFromLeft)
@@ -92,10 +94,9 @@
                         }
                     } completion:completion];
 }
+
 - (IBAction)nextQuestion:(id)sender {
-    GameViewController *gameViewController = [[GameViewController alloc] initWithNibName:@"GameViewController" bundle:nil];
-    
-    [self.navigationController pushViewController:gameViewController animated:YES];
+    [self.delegate didFinishRound];
 }
 
 - (IBAction)cancelGuess:(id)sender {
@@ -111,13 +112,13 @@
     NSString *nameOfGuessedFriend = [[self guessNameLabel] text];
     
     void (^completionBlock)(BOOL success) = ^void(BOOL success) {
-        double firstDelayInSeconds = 0.1;
+        double firstDelayInSeconds = 0.0;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(firstDelayInSeconds * NSEC_PER_SEC));
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
             
             
             
-            double delayInSeconds = 0.4;
+            double delayInSeconds = 0.0;
             dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
             dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
                 [self flipFlippingParentToView:DestinationViewOptionAnswer withBlock:^(BOOL finished) {
@@ -193,11 +194,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [self setUpNextRound];
-    if (([[GameRoundQueue sharedQueue] queueLength] < 3) &&
-        (![[FBRequestController sharedController] isScraping])) {
-        [[FBRequestController sharedController] startScrapingFacebookData];
-    }
     [[self correctFriendNameLabel] setText:[self correctFriendName]];
     [[self correctFriendImageView] setImage:[self correctFriendImage]];
     [self.view bringSubviewToFront:_xOrOImageView];

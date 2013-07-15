@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol GameViewControllerDelegate <NSObject>
+
+- (void)didFinishRound;
+
+@end
 
 typedef enum DestinationViewOption: NSInteger {
     DestinationViewOptionStatus = 0,
@@ -17,6 +22,7 @@ typedef enum DestinationViewOption: NSInteger {
 
 @interface GameViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
+@property (strong, nonatomic) id <GameViewControllerDelegate> delegate;
 
 // Parent view for top panel that filps between three subviews
 @property (weak, nonatomic) IBOutlet UIView *flippingParentView;
@@ -43,5 +49,7 @@ typedef enum DestinationViewOption: NSInteger {
 // TableView below
 @property (weak, nonatomic) IBOutlet UITableView *friendOptionsTableView;
     @property (strong, nonatomic) NSArray *friendOptions;
+
+- (void)setUpNextRound:(NSDictionary *)round;
 
 @end

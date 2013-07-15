@@ -32,6 +32,7 @@
 		14F5BC0F178FF885008B8FEE /* checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 14F5BC0E178FF885008B8FEE /* checkmark.png */; };
 		14F5BC11178FF88C008B8FEE /* xmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 14F5BC10178FF88C008B8FEE /* xmark.png */; };
 		7C0F488F179297C30097161F /* NSMutableArray+Shuffling.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C0F488E179296B00097161F /* NSMutableArray+Shuffling.m */; };
+		7C218C531794A49B003A1772 /* WhoStatGlobalAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C218C521794A49B003A1772 /* WhoStatGlobalAppController.m */; };
 		7C2C36FE179078F200133EF9 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C2C36FD179078F200133EF9 /* FacebookSDK.framework */; };
 		7C2C37001790790B00133EF9 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C2C36FF1790790B00133EF9 /* Security.framework */; };
 		7C2C37021790791200133EF9 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C2C37011790791200133EF9 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -80,6 +81,8 @@
 		7C0F488E179296B00097161F /* NSMutableArray+Shuffling.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Shuffling.m"; sourceTree = "<group>"; };
 		7C0F489017935E100097161F /* FBRequestController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FBRequestController.h; sourceTree = "<group>"; };
 		7C0F489117935E100097161F /* FBRequestController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FBRequestController.m; sourceTree = "<group>"; };
+		7C218C511794A49B003A1772 /* WhoStatGlobalAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhoStatGlobalAppController.h; sourceTree = "<group>"; };
+		7C218C521794A49B003A1772 /* WhoStatGlobalAppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhoStatGlobalAppController.m; sourceTree = "<group>"; };
 		7C2C36FD179078F200133EF9 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		7C2C36FF1790790B00133EF9 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		7C2C37011790791200133EF9 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
@@ -150,10 +153,12 @@
 			children = (
 				141EF13C178F9C6600B4DFC3 /* WhoStatAppDelegate.h */,
 				141EF13D178F9C6600B4DFC3 /* WhoStatAppDelegate.m */,
-				141EF15B178FB3D400B4DFC3 /* QuestionMark.png */,
+				7C218C511794A49B003A1772 /* WhoStatGlobalAppController.h */,
+				7C218C521794A49B003A1772 /* WhoStatGlobalAppController.m */,
 				141EF15C178FB3D400B4DFC3 /* TitleViewController.h */,
 				141EF15D178FB3D400B4DFC3 /* TitleViewController.m */,
 				141EF15E178FB3D400B4DFC3 /* TitleViewController.xib */,
+				141EF15B178FB3D400B4DFC3 /* QuestionMark.png */,
 				7C0F489017935E100097161F /* FBRequestController.h */,
 				7C0F489117935E100097161F /* FBRequestController.m */,
 				7CADDB9A179370C3006ED239 /* GameRoundQueue.h */,
@@ -291,6 +296,7 @@
 				7C0F488F179297C30097161F /* NSMutableArray+Shuffling.m in Sources */,
 				14F5BC03178FDC54008B8FEE /* FlippingViewController.m in Sources */,
 				7CADDBA9179377DB006ED239 /* NSArray+ContainsClass.m in Sources */,
+				7C218C531794A49B003A1772 /* WhoStatGlobalAppController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

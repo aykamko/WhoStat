@@ -53,9 +53,11 @@
                 [self startConnectionToScrapeStatusIntoRound:round];
             }
         };
-        [FBSession openActiveSessionWithReadPermissions:@[@"read_stream"]
-                                           allowLoginUI:YES
-                                      completionHandler:handler];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [FBSession openActiveSessionWithReadPermissions:@[@"read_stream"]
+                                               allowLoginUI:YES
+                                          completionHandler:handler];
+        });
     }
 }
 
@@ -76,10 +78,12 @@
                                   error:error];
     };
     
-    [FBRequestConnection startWithGraphPath:@"/fql"
-                                 parameters:queryParam
-                                 HTTPMethod:@"GET"
-                          completionHandler:handler];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [FBRequestConnection startWithGraphPath:@"/fql"
+                                     parameters:queryParam
+                                     HTTPMethod:@"GET"
+                              completionHandler:handler];
+    });
 }
 
 - (void)requestForStatusCompleted:(FBRequestConnection *)connection
@@ -136,10 +140,12 @@
                                       error:error];
     };
     
-    [FBRequestConnection startWithGraphPath:@"/fql"
-                                 parameters:queryParam
-                                 HTTPMethod:@"GET"
-                          completionHandler:handler];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [FBRequestConnection startWithGraphPath:@"/fql"
+                                     parameters:queryParam
+                                     HTTPMethod:@"GET"
+                              completionHandler:handler];
+    });
 }
 
 - (void)requestForFriendDataCompleted:(FBRequestConnection *)connection
@@ -183,51 +189,77 @@
         
         /* Getting mutual friends is hard. :( */
         
-        //        for (NSMutableDictionary *userDict in randMutualFriendArray) {
-        //            NSURL *squareImageURL = [NSURL
-        //                                     URLWithString:userDict[@"pic_square"]];
-        //            NSData *squareImageData = [NSData
-        //                                       dataWithContentsOfURL:squareImageURL];
-        //            UIImage *squareImage = [UIImage imageWithData:squareImageData];
-        //            NSURL *bigImageURL = [NSURL
-        //                                  URLWithString:userDict[@"pic_big"]];
-        //            NSData *bigImageData = [NSData dataWithContentsOfURL:bigImageURL];
-        //            UIImage *bigImage = [UIImage imageWithData:bigImageData];
-        //            userDict[@"pic_square"] = squareImage;
-        //            userDict[@"pic_big"] = bigImage;
-        //
-        //            [_friendOptions addObject:userDict];
-        //        }
-        //
-        //        if ([_friendOptions count] < 5) {
-        //            int maxIndex = 5 - [_friendOptions count]; }
+//        for (NSMutableDictionary *userDict in randMutualFriendArray) {
+//            NSURL *squareImageURL = [NSURL
+//                                     URLWithString:userDict[@"pic_square"]];
+//            NSData *squareImageData = [NSData
+//                                       dataWithContentsOfURL:squareImageURL];
+//            UIImage *squareImage = [UIImage imageWithData:squareImageData];
+//            NSURL *bigImageURL = [NSURL
+//                                  URLWithString:userDict[@"pic_big"]];
+//            NSData *bigImageData = [NSData dataWithContentsOfURL:bigImageURL];
+//            UIImage *bigImage = [UIImage imageWithData:bigImageData];
+//            userDict[@"pic_square"] = squareImage;
+//            userDict[@"pic_big"] = bigImage;
+//
+//            [_friendOptions addObject:userDict];
+//        }
+//
+//        if ([_friendOptions count] < 5) {
+//            int maxIndex = 5 - [_friendOptions count]; }
         
-        for (NSMutableDictionary *userDict in randFriendArray) {
+        size_t count = 4;
+        dispatch_queue_t queue =
+            dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        
+        dispatch_apply(count, queue, ^(size_t i) {
+            NSMutableDictionary *userDict = randFriendArray[i];
             NSURL *squareImageURL = [NSURL
                                      URLWithString:userDict[@"pic_square"]];
             NSData *squareImageData = [NSData
                                        dataWithContentsOfURL:squareImageURL];
             UIImage *squareImage = [UIImage imageWithData:squareImageData];
-            
+
             NSURL *bigImageURL = [NSURL
                                   URLWithString:userDict[@"pic_big"]];
             NSData *bigImageData = [NSData
                                     dataWithContentsOfURL:bigImageURL];
             UIImage *bigImage = [UIImage imageWithData:bigImageData];
-            
+
             userDict[@"pic_square"] = squareImage;
             userDict[@"pic_big"] = bigImage;
             [friendOptions addObject:userDict];
-        }
+        });
+                       
+//        for (NSMutableDictionary *userDict in randFriendArray) {
+//            NSURL *squareImageURL = [NSURL
+//                                     URLWithString:userDict[@"pic_square"]];
+//            NSData *squareImageData = [NSData
+//                                       dataWithContentsOfURL:squareImageURL];
+//            UIImage *squareImage = [UIImage imageWithData:squareImageData];
+//            
+//            NSURL *bigImageURL = [NSURL
+//                                  URLWithString:userDict[@"pic_big"]];
+//            NSData *bigImageData = [NSData
+//                                    dataWithContentsOfURL:bigImageURL];
+//            UIImage *bigImage = [UIImage imageWithData:bigImageData];
+//            
+//            userDict[@"pic_square"] = squareImage;
+//            userDict[@"pic_big"] = bigImage;
+//            [friendOptions addObject:userDict];
+//        }
+                       
         // Shuffles the array
         [friendOptions shuffle];
         
         round[@"friendOptions"] = friendOptions;
         NSDictionary *staticRound = [[NSDictionary alloc]
-                                     initWithDictionary:round
-                                     copyItems:YES];
+                                     initWithDictionary:round];
         _isScraping = NO;
-        [self.delegate didGetRoundData:staticRound];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.delegate didGetRoundData:staticRound];
+        });
+        NSLog(@"rounds: %d", [[GameRoundQueue sharedQueue] queueLength]);
     }
 }
 

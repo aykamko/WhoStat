@@ -35,11 +35,7 @@
 - (IBAction)playGame:(id)sender {
     if ([[GameRoundQueue sharedQueue] queueLength] == 0) {
         [[FBRequestController sharedController] setDelegate:self];
-        dispatch_queue_t queue =
-            dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-        dispatch_async(queue, ^(void){
-            [[FBRequestController sharedController] startScrapingFacebookData];
-        });
+        [[FBRequestController sharedController] startScrapingFacebookData];
     }
 }
 
@@ -48,17 +44,7 @@
     [[GameRoundQueue sharedQueue] pushRound:round];
     if (([[GameRoundQueue sharedQueue] queueLength] < 3) &&
         (![[FBRequestController sharedController] isScraping])) {
-        dispatch_queue_t queue =
-            dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
-        dispatch_async(queue, ^(void){
-            [[FBRequestController sharedController] startScrapingFacebookData];
-        });
-        
-                // Run in background
-//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,
-//                                                 (unsigned long)NULL), ^(void) {
-//            [[FBRequestController sharedController] startScrapingFacebookData];
-//        });
+        [[FBRequestController sharedController] startScrapingFacebookData];
     }
     if ([[self.navigationController viewControllers]
          containsClass:[GameViewController class]]) {

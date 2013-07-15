@@ -29,6 +29,10 @@
 
 - (void)startScrapingFacebookData
 {
+    dispatch_queue_t queue =
+        dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
+    dispatch_async(queue, ^(void){
+    
     if (FBSession.activeSession.isOpen) {
         NSMutableDictionary *round = [[NSMutableDictionary alloc] init];
         _isScraping = YES;
@@ -50,11 +54,7 @@
                 NSLog(@"successful login!");
                 NSMutableDictionary *round = [[NSMutableDictionary alloc] init];
                 _isScraping = YES;
-                dispatch_queue_t queue =
-                    dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
-                dispatch_async(queue, ^(void){
-                    [self startConnectionToScrapeStatusIntoRound:round];
-                });
+                [self startConnectionToScrapeStatusIntoRound:round];
             }
         };
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -63,10 +63,16 @@
                                           completionHandler:handler];
         });
     }
+        
+    });
 }
 
 - (void)startConnectionToScrapeStatusIntoRound:(NSMutableDictionary *)round
 {
+    dispatch_queue_t queue =
+        dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
+    dispatch_async(queue, ^(void){
+
     
     NSString *query =
     @"SELECT status_id, message, uid FROM status WHERE uid IN ("
@@ -76,14 +82,10 @@
     NSDictionary *queryParam = @{ @"q": query };
     FBRequestHandler handler =
     ^(FBRequestConnection *connection, id result, NSError *error) {
-        dispatch_queue_t queue =
-            dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
-        dispatch_async(queue, ^(void){
         [self requestForStatusCompleted:connection
                                   round:round
                                  result:result
                                   error:error];
-        });
     };
     
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -92,6 +94,8 @@
                                      HTTPMethod:@"GET"
                               completionHandler:handler];
     });
+        
+    });
 }
 
 - (void)requestForStatusCompleted:(FBRequestConnection *)connection
@@ -99,6 +103,10 @@
                            result:(id)result
                             error:(NSError *)error
 {
+    dispatch_queue_t queue =
+        dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
+    dispatch_async(queue, ^(void){
+    
     if (error) {
         _isScraping = NO;
         NSLog(@"status request error");
@@ -109,17 +117,19 @@
         round[@"status"] = statusDict[@"message"];
         round[@"correctID"] = statusDict[@"uid"];
         
-        dispatch_queue_t queue =
-            dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
-        dispatch_async(queue, ^(void){
-            [self startConnectionToScrapeFriendDataIntoRound:round];
-        });
+        [self startConnectionToScrapeFriendDataIntoRound:round];
     }
-    
+        
+    });
 }
 
 - (void)startConnectionToScrapeFriendDataIntoRound:(NSMutableDictionary *)round
 {
+    
+    dispatch_queue_t queue =
+        dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
+    dispatch_async(queue, ^(void){
+        
     // Query building
     NSString *query =
     [NSString stringWithFormat:
@@ -146,14 +156,10 @@
     NSDictionary *queryParam = @{ @"q": query };
     FBRequestHandler handler =
     ^(FBRequestConnection *connection, id result, NSError *error) {
-        dispatch_queue_t queue =
-            dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
-        dispatch_async(queue, ^(void){
         [self requestForFriendDataCompleted:connection
                                       round:round
                                      result:result
                                       error:error];
-        });
     };
     
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -162,6 +168,8 @@
                                      HTTPMethod:@"GET"
                               completionHandler:handler];
     });
+        
+    });
 }
 
 - (void)requestForFriendDataCompleted:(FBRequestConnection *)connection
@@ -169,6 +177,11 @@
                                result:(id)result
                                 error:(NSError *)error
 {
+    
+    dispatch_queue_t queue =
+        dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
+    dispatch_async(queue, ^(void){
+        
     if (error) {
         _isScraping = NO;
         NSLog(@"friend data request failed");
@@ -277,6 +290,8 @@
         });
         NSLog(@"rounds: %d", [[GameRoundQueue sharedQueue] queueLength]);
     }
+    
+    });
 }
 
 @end

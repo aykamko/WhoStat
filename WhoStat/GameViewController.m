@@ -196,11 +196,7 @@
     [self setUpNextRound];
     if (([[GameRoundQueue sharedQueue] queueLength] < 3) &&
         (![[FBRequestController sharedController] isScraping])) {
-        dispatch_queue_t queue =
-            dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
-        dispatch_async(queue, ^(void){
-            [[FBRequestController sharedController] startScrapingFacebookData];
-        });
+        [[FBRequestController sharedController] startScrapingFacebookData];
     }
     [[self correctFriendNameLabel] setText:[self correctFriendName]];
     [[self correctFriendImageView] setImage:[self correctFriendImage]];

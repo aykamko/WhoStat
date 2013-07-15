@@ -33,21 +33,28 @@
 }
 
 - (IBAction)playGame:(id)sender {
-    [[FBRequestController sharedController] setDelegate:self];
-    [[FBRequestController sharedController] startScrapingFacebookData];
+    if ([[GameRoundQueue sharedQueue] queueLength] == 0) {
+        [[FBRequestController sharedController] setDelegate:self];
+        [[FBRequestController sharedController] startScrapingFacebookData];
+    }
 }
 
 - (void)didGetRoundData:(NSDictionary *)round {
     
     [[GameRoundQueue sharedQueue] pushRound:round];
     NSLog(@"rounds: %i", [[GameRoundQueue sharedQueue] queueLength]);
-    if ([[GameRoundQueue sharedQueue] queueLength] < 3) {
-        NSLog(@"starting again");
+    if (([[GameRoundQueue sharedQueue] queueLength] < 3) &&
+        (![[FBRequestController sharedController] isScraping])) {
         [[FBRequestController sharedController] startScrapingFacebookData];
+        
+                // Run in background
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,
+//                                                 (unsigned long)NULL), ^(void) {
+//            [[FBRequestController sharedController] startScrapingFacebookData];
+//        });
     }
     if ([[self.navigationController viewControllers]
          containsClass:[GameViewController class]]) {
-        NSLog(@"GameViewController already on navigationController stack");
         return;
     }
     

@@ -31,11 +31,13 @@
 {
     if (FBSession.activeSession.isOpen) {
         NSMutableDictionary *round = [[NSMutableDictionary alloc] init];
+        _isScraping = YES;
         [self startConnectionToScrapeStatusIntoRound:round];
     } else {
         FBSessionStateHandler handler =
         ^(FBSession *session, FBSessionState status, NSError *error) {
             if (error) {
+                _isScraping = NO;
                 UIAlertView *alertView = [[UIAlertView alloc]
                                           initWithTitle:@"Error"
                                           message:error.localizedDescription
@@ -47,6 +49,7 @@
             } else if (session.isOpen) {
                 NSLog(@"successful login!");
                 NSMutableDictionary *round = [[NSMutableDictionary alloc] init];
+                _isScraping = YES;
                 [self startConnectionToScrapeStatusIntoRound:round];
             }
         };
@@ -85,7 +88,9 @@
                             error:(NSError *)error
 {
     if (error) {
+        _isScraping = NO;
         NSLog(@"status request error");
+        return;
     } else {
         NSDictionary *statusDict =
         [(NSDictionary *)result valueForKey:@"data"][0];
@@ -100,25 +105,26 @@
 - (void)startConnectionToScrapeFriendDataIntoRound:(NSMutableDictionary *)round
 {
     // Query building
-    NSString *query = [NSString stringWithFormat:
-                       @"{"
-                       @"\"correctFriendData\":"
-                       @"\"SELECT uid, name, pic_big, pic_square FROM user WHERE uid = %@\", "
-                       //    @"\"randMutualFriendsData\":"
-                       //        @"\"SELECT uid, name, pic_big, pic_square FROM user WHERE uid IN ("
-                       //            @"SELECT uid1 FROM friend WHERE uid1 IN ("
-                       //                @"SELECT uid2 FROM friend WHERE uid1 = %@) "
-                       //            @"AND uid2 IN ("
-                       //                @"SELECT uid2 FROM friend WHERE uid1 = me()) "
-                       //            @"ORDER BY rand() LIMIT 4)"
-                       //        @"\", "
-                       @"\"randFriendsData\":"
-                       @"\"SELECT uid, name, pic_big, pic_square FROM user WHERE uid IN "
-                       @"(SELECT uid2 FROM friend WHERE uid1 = me()) "
-                       @"ORDER BY rand() LIMIT 4\""
-                       @"}",
-                       //                       _currentStatusDict[@"uid"],
-                       round[@"correctID"]];
+    NSString *query =
+    [NSString stringWithFormat:
+       @"{"
+       @"\"correctFriendData\":"
+       @"\"SELECT uid, name, pic_big, pic_square FROM user WHERE uid = %@\", "
+       //    @"\"randMutualFriendsData\":"
+       //        @"\"SELECT uid, name, pic_big, pic_square FROM user WHERE uid IN ("
+       //            @"SELECT uid1 FROM friend WHERE uid1 IN ("
+       //                @"SELECT uid2 FROM friend WHERE uid1 = %@) "
+       //            @"AND uid2 IN ("
+       //                @"SELECT uid2 FROM friend WHERE uid1 = me()) "
+       //            @"ORDER BY rand() LIMIT 4)"
+       //        @"\", "
+       @"\"randFriendsData\":"
+       @"\"SELECT uid, name, pic_big, pic_square FROM user WHERE uid IN "
+       @"(SELECT uid2 FROM friend WHERE uid1 = me()) "
+       @"ORDER BY rand() LIMIT 4\""
+       @"}",
+       //                       _currentStatusDict[@"uid"],
+       round[@"correctID"]];
 
     
     NSDictionary *queryParam = @{ @"q": query };
@@ -142,7 +148,9 @@
                                 error:(NSError *)error
 {
     if (error) {
+        _isScraping = NO;
         NSLog(@"friend data request failed");
+        return;
     } else {
         NSMutableArray *friendOptions = [[NSMutableArray alloc] init];
         NSArray *rawData = result[@"data"];
@@ -218,6 +226,7 @@
         NSDictionary *staticRound = [[NSDictionary alloc]
                                      initWithDictionary:round
                                      copyItems:YES];
+        _isScraping = NO;
         [self.delegate didGetRoundData:staticRound];
     }
 }

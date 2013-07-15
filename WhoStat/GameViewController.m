@@ -9,6 +9,7 @@
 #import "GameViewController.h"
 #import "FriendOptionCell.h"
 #import "GameRoundQueue.h"
+#import "FBRequestController.h"
 
 @interface GameViewController ()
 {
@@ -186,6 +187,16 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self setUpNextRound];
+    if (([[GameRoundQueue sharedQueue] queueLength] < 3) &&
+        (![[FBRequestController sharedController] isScraping])) {
+        [[FBRequestController sharedController] startScrapingFacebookData];
+        
+        // Run in background
+        //        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,
+        //                                                 (unsigned long)NULL), ^(void) {
+        //            [[FBRequestController sharedController] startScrapingFacebookData];
+        //        });
+    }
     [[self correctFriendNameLabel] setText:[self correctFriendName]];
     [[self correctFriendImageView] setImage:[self correctFriendImage]];
     [self.view bringSubviewToFront:_xOrOImageView];

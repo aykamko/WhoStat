@@ -17,6 +17,7 @@
 @interface FBRequestController : NSObject
 
 @property (strong, nonatomic) id <FBRequestControllerDelegate> delegate;
+@property (nonatomic) BOOL isScraping;
 
 + (FBRequestController *)sharedController;
 - (void)startScrapingFacebookData;

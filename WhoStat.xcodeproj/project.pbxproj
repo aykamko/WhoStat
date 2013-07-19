@@ -35,6 +35,8 @@
 		7C2C370817907E3800133EF9 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C2C370717907E3800133EF9 /* libsqlite3.0.dylib */; };
 		7C7E75751799AEC500F0F33B /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C7E75741799AEC500F0F33B /* Logo.png */; };
 		7C7E75781799B7F200F0F33B /* Placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C7E75771799B7F200F0F33B /* Placeholder.png */; };
+		7C7E757A1799CB9900F0F33B /* CreditsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C7E75791799CB9900F0F33B /* CreditsViewController.xib */; };
+		7C7E757D1799CC1F00F0F33B /* CreditsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C7E757C1799CC1F00F0F33B /* CreditsViewController.m */; };
 		7CADDB96179362E7006ED239 /* FBRequestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C0F489117935E100097161F /* FBRequestController.m */; };
 		7CADDB9C179370C3006ED239 /* GameRoundQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CADDB9B179370C3006ED239 /* GameRoundQueue.m */; };
 		7CADDBA9179377DB006ED239 /* NSArray+ContainsClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CADDBA8179377DB006ED239 /* NSArray+ContainsClass.m */; };
@@ -82,6 +84,9 @@
 		7C2C370717907E3800133EF9 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		7C7E75741799AEC500F0F33B /* Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logo.png; sourceTree = "<group>"; };
 		7C7E75771799B7F200F0F33B /* Placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Placeholder.png; sourceTree = "<group>"; };
+		7C7E75791799CB9900F0F33B /* CreditsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreditsViewController.xib; sourceTree = "<group>"; };
+		7C7E757B1799CC1F00F0F33B /* CreditsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreditsViewController.h; sourceTree = "<group>"; };
+		7C7E757C1799CC1F00F0F33B /* CreditsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditsViewController.m; sourceTree = "<group>"; };
 		7CADDB9A179370C3006ED239 /* GameRoundQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameRoundQueue.h; sourceTree = "<group>"; };
 		7CADDB9B179370C3006ED239 /* GameRoundQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameRoundQueue.m; sourceTree = "<group>"; };
 		7CADDBA7179377DB006ED239 /* NSArray+ContainsClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSArray+ContainsClass.h"; path = "../NSArray+ContainsClass.h"; sourceTree = "<group>"; };
@@ -151,6 +156,9 @@
 				141EF15C178FB3D400B4DFC3 /* TitleViewController.h */,
 				141EF15D178FB3D400B4DFC3 /* TitleViewController.m */,
 				141EF15E178FB3D400B4DFC3 /* TitleViewController.xib */,
+				7C7E757B1799CC1F00F0F33B /* CreditsViewController.h */,
+				7C7E757C1799CC1F00F0F33B /* CreditsViewController.m */,
+				7C7E75791799CB9900F0F33B /* CreditsViewController.xib */,
 				141EF15B178FB3D400B4DFC3 /* QuestionMark.png */,
 				7C0F489017935E100097161F /* FBRequestController.h */,
 				7C0F489117935E100097161F /* FBRequestController.m */,
@@ -163,9 +171,9 @@
 				14F5BC02178FDC54008B8FEE /* FlippingViewController.m */,
 				141EF14A178F9C8900B4DFC3 /* GameViewController.h */,
 				141EF14B178F9C8900B4DFC3 /* GameViewController.m */,
+				141EF14C178F9C8900B4DFC3 /* GameViewController.xib */,
 				14CF34041798F5AC0067BE51 /* StaticTextView.h */,
 				14CF34051798F5AC0067BE51 /* StaticTextView.m */,
-				141EF14C178F9C8900B4DFC3 /* GameViewController.xib */,
 				7CADDBA31793713D006ED239 /* Extensions */,
 				7C7E75761799AECB00F0F33B /* Images */,
 				141EF134178F9C6600B4DFC3 /* Supporting Files */,
@@ -263,6 +271,7 @@
 				141EF140178F9C6600B4DFC3 /* Default.png in Resources */,
 				141EF142178F9C6600B4DFC3 /* Default@2x.png in Resources */,
 				141EF144178F9C6600B4DFC3 /* Default-568h@2x.png in Resources */,
+				7C7E757A1799CB9900F0F33B /* CreditsViewController.xib in Resources */,
 				141EF14E178F9C8900B4DFC3 /* GameViewController.xib in Resources */,
 				7C7E75781799B7F200F0F33B /* Placeholder.png in Resources */,
 				141EF153178F9F8100B4DFC3 /* FriendOptionCell.xib in Resources */,
@@ -284,6 +293,7 @@
 				141EF14D178F9C8900B4DFC3 /* GameViewController.m in Sources */,
 				14CF34061798F5AC0067BE51 /* StaticTextView.m in Sources */,
 				7CADDB9C179370C3006ED239 /* GameRoundQueue.m in Sources */,
+				7C7E757D1799CC1F00F0F33B /* CreditsViewController.m in Sources */,
 				141EF151178F9F4F00B4DFC3 /* FriendOptionCell.m in Sources */,
 				141EF161178FB3D400B4DFC3 /* TitleViewController.m in Sources */,
 				7CADDB96179362E7006ED239 /* FBRequestController.m in Sources */,

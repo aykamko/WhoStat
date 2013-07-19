@@ -33,6 +33,7 @@
 {
     self = [super init];
     if (self != nil) {
+        _longestStreak = [[NSNumber alloc] initWithInt:0];
         _gamePlaying = NO;
         _roundFinished = NO;
         _requestController = [[FBRequestController alloc] init];
@@ -55,15 +56,21 @@
     return appController;
 }
 
+- (void)setLongestStreak:(NSNumber *)longestStreak
+{
+    _longestStreak = longestStreak;
+    [_titleViewController setLongestStreak:longestStreak];
+}
+
 - (void)startNewRequest
 {
     if (([_gameRoundQueue queueLength] < 10) &&
         ![_requestController isScraping]) {
-        NSLog(@"starting");
+//        NSLog(@"starting");
         void (^completion)(NSDictionary *round);
         completion = ^(NSDictionary *round) {
             [_gameRoundQueue pushRound:round];
-            NSLog(@"queued: %d", [_gameRoundQueue queueLength]);
+//            NSLog(@"queued: %d", [_gameRoundQueue queueLength]);
             if (_roundFinished == YES || _gamePlaying == NO) {
                 [self sendNewRoundToGameViewController];
             }

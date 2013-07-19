@@ -38,6 +38,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
          initWithNibName:@"TitleViewController"
          bundle:nil];
     [titleViewController setDelegate:globalAppController];
+    [titleViewController setLongestStreak:[globalAppController longestStreak]];
     
     UINavigationController *navController =
         [[UINavigationController alloc]

@@ -9,6 +9,7 @@
 #import "GameViewController.h"
 #import "FriendOptionCell.h"
 #import "FBRequestController.h"
+#import "WhoStatGlobalAppController.h"
 
 @interface GameViewController ()
 {
@@ -111,6 +112,15 @@
     [correctCell.selectedBackgroundView setBackgroundColor:[UIColor colorWithRed:184.0f/255.0f green:55.0f/255.0f blue:29.0f/255.0f alpha:1]];
     [correctCell setNeedsDisplay];
     [_nextButton setEnabled:YES];
+    
+    //Longest streak
+    NSNumber *longestStreak =
+    [[WhoStatGlobalAppController appController] longestStreak];
+    if (_currentStreak > [longestStreak intValue]) {
+        NSNumber *longest = [[NSNumber alloc] initWithInt:_currentStreak];
+        [[WhoStatGlobalAppController appController] setLongestStreak:longest];
+    }
+    
     [self.delegate gameViewControllerDidFinishRound:self];
 }
 

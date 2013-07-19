@@ -18,6 +18,7 @@
 
 @interface TitleViewController : UIViewController
 
+@property (nonatomic, strong) NSNumber *longestStreak;
 @property (nonatomic, strong) id <TitleViewControllerDelegate, GameViewControllerDelegate> delegate;
 
 - (void)pushGameViewControllerWithRound:(NSDictionary *)round;

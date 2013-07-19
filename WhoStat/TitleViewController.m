@@ -9,6 +9,7 @@
 #import "TitleViewController.h"
 #import "GameViewController.h"
 #import "WhoStatGlobalAppController.h"
+#import "CreditsViewController.h"
 
 #import "WhoStatAppDelegate.h"
 #import "FBRequestController.h"
@@ -22,6 +23,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *questionMark;
 @property (strong, nonatomic) IBOutlet UIButton *playButton;
 @property (weak, nonatomic) IBOutlet UIButton *creditsButton;
+@property (weak, nonatomic) IBOutlet UILabel *longestStreakLabel;
 
 @end
 
@@ -34,6 +36,14 @@
         [navigationItem setTitle:@"Home"];
     }
     return self;
+}
+
+- (IBAction)showCredits:(id)sender {
+    CreditsViewController *creditsViewController =
+    [[CreditsViewController alloc] initWithNibName:@"CreditsViewController"
+                                            bundle:nil];
+    [self.navigationController pushViewController:creditsViewController
+                                         animated:YES];
 }
 
 - (IBAction)playGame:(id)sender {
@@ -90,6 +100,9 @@
     [[self playButton] addTarget:self
                           action:@selector(buttonNormal:)
                 forControlEvents:UIControlEventTouchUpInside];
+    [[self longestStreakLabel]
+     setText:[NSString stringWithFormat:@"Longest streak: %@",
+              [self longestStreak]]];
 }
 
 - (void)buttonHighlight:(UIButton *)button

@@ -18,6 +18,8 @@ GameViewControllerDelegate>
 
 @property (strong, nonatomic) UINavigationController *navController;
 
+@property (nonatomic, strong) NSNumber *longestStreak;
+
 + (WhoStatGlobalAppController *)appController;
 - (void)sendNewRoundToGameViewController;
 

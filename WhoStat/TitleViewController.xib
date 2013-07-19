@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TitleViewController">
             <connections>
                 <outlet property="creditsButton" destination="4uD-iY-wod" id="7GK-RW-nAJ"/>
+                <outlet property="longestStreakLabel" destination="oc6-kN-7X3" id="t2v-bd-P0C"/>
                 <outlet property="playButton" destination="56" id="66"/>
                 <outlet property="questionMark" destination="4" id="40"/>
                 <outlet property="view" destination="3" id="41"/>
@@ -45,14 +46,14 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="playGame:" destination="-1" eventType="touchUpInside" id="ScY-y1-JUD"/>
+                                <action selector="showCredits:" destination="-1" eventType="touchUpInside" id="4cb-vp-HUR"/>
                             </connections>
                         </button>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Longest Streak:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oc6-kN-7X3">
                             <rect key="frame" x="20" y="9" width="280" height="25"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="textColor" red="0.30196078430000001" green="0.41176470590000003" blue="0.66666666669999997" alpha="1" colorSpace="deviceRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>

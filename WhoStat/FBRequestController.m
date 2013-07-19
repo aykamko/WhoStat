@@ -10,6 +10,8 @@
 #import "WhoStatAppDelegate.h"
 #import "NSMutableArray+Shuffling.h"
 
+#define WSLog(...) do{}while(0);//NSLog(__VA_ARGS__)
+
 @interface FBRequestController ()
 @property (nonatomic, strong) void (^completionBlock)(NSDictionary *round);
 @end
@@ -56,7 +58,7 @@
                 [alertView show];
                 return;
             } else if (session.isOpen) {
-                NSLog(@"successful login!");
+                WSLog(@"successful login!");
                 NSMutableDictionary *round = [[NSMutableDictionary alloc] init];
                 _isScraping = YES;
                 [self startConnectionToScrapeStatusIntoRound:round];
@@ -115,8 +117,8 @@
     
     if (error) {
         _isScraping = NO;
-        NSLog(@"status request error");
-        NSLog(@"%@", error.localizedDescription);
+        WSLog(@"status request error");
+        WSLog(@"%@", error.localizedDescription);
         return;
     } else {
         NSDictionary *statusDict =
@@ -170,7 +172,7 @@
         
     if (error) {
         _isScraping = NO;
-        NSLog(@"friend data request failed");
+        WSLog(@"friend data request failed");
         return;
     } else {
         NSArray *friends = ((NSDictionary *) result)[@"friends"][@"data"];
@@ -181,7 +183,7 @@
         if ([mutuals count] < 4)
             maxIndex = [mutuals count];
         
-        NSLog(@"count: %d", maxIndex);
+        WSLog(@"count: %d", maxIndex);
         NSMutableSet *usedIndexes = [[NSMutableSet alloc] init];
         for (int i = 0; i < maxIndex; i++)
         {
@@ -203,7 +205,7 @@
         }
         
         maxIndex = 4 - maxIndex;
-        NSLog(@"left: %d", maxIndex);
+        WSLog(@"left: %d", maxIndex);
         for (int i = 0; i < maxIndex; i++)
         {
             u_int32_t randIndex;
@@ -222,7 +224,7 @@
 
             [friendOptions addObject:userDict];
         }
-        NSLog(@"length: %d", [friendOptions count]);
+        WSLog(@"length: %d", [friendOptions count]);
         
         round[@"friendOptions"] = friendOptions;
         [self startConnectionToScrapeCorrectFriendDataIntoRound:round];
@@ -232,7 +234,7 @@
 //        dispatch_async(dispatch_get_main_queue(), ^{
 //            [self.delegate didGetRoundData:staticRound];
 //        });
-//        NSLog(@"rounds: %d", [[GameRoundQueue sharedQueue] queueLength]);
+//        WSLog(@"rounds: %d", [[GameRoundQueue sharedQueue] queueLength]);
     }
     
     });

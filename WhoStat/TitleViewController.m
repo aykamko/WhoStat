@@ -18,6 +18,7 @@
 
 @interface TitleViewController ()
 
+@property (nonatomic, strong) UIActivityIndicatorView *indicator;
 @property (strong, nonatomic) IBOutlet UIImageView *questionMark;
 @property (strong, nonatomic) IBOutlet UIButton *playButton;
 @property (weak, nonatomic) IBOutlet UIButton *creditsButton;
@@ -36,14 +37,27 @@
 }
 
 - (IBAction)playGame:(id)sender {
-    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [self.delegate setUpNewGame];
+}
+
+- (void)startIndicatorAnimation
+{
+    _indicator = [[UIActivityIndicatorView alloc]
+                  initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     CGFloat halfButtonHeight = self.playButton.bounds.size.height / 2;
     CGFloat halfButtonWidth = self.playButton.bounds.size.width / 2;
-    indicator.center = CGPointMake(halfButtonWidth , halfButtonHeight);
+    _indicator.center = CGPointMake(halfButtonWidth , halfButtonHeight);
     [self.playButton setTitle:@"" forState:UIControlStateNormal];
-    [self.playButton addSubview:indicator];
-    [indicator startAnimating];
-    [self.delegate setUpNewGame];
+    [self.playButton addSubview:_indicator];
+    [_indicator startAnimating];
+}
+
+- (void)stopIndicatorAnimation
+{
+    [_indicator stopAnimating];
+    [_indicator removeFromSuperview];
+    [self.playButton setTitle:@"Play" forState:UIControlStateNormal];
+    [self.playButton setNeedsDisplay];
 }
 
 - (void)pushGameViewControllerWithRound:(NSDictionary *)round
@@ -63,11 +77,19 @@
 - (void)viewWillAppear:(BOOL)animated {
     self.navigationController.navigationBar.hidden = YES;
     [[self creditsButton].layer setCornerRadius:2.0];
-    [[self creditsButton] addTarget:self action:@selector(buttonHighlight:) forControlEvents:UIControlEventTouchDown];
-    [[self creditsButton] addTarget:self action:@selector(buttonNormal:) forControlEvents:UIControlEventTouchUpInside];
+    [[self creditsButton] addTarget:self
+                             action:@selector(buttonHighlight:)
+                   forControlEvents:UIControlEventTouchDown];
+    [[self creditsButton] addTarget:self
+                             action:@selector(buttonNormal:)
+                   forControlEvents:UIControlEventTouchUpInside];
     [[self playButton].layer setCornerRadius:2.0];
-    [[self playButton] addTarget:self action:@selector(buttonHighlight:) forControlEvents:UIControlEventTouchDown];
-    [[self playButton] addTarget:self action:@selector(buttonNormal:) forControlEvents:UIControlEventTouchUpInside];
+    [[self playButton] addTarget:self
+                          action:@selector(buttonHighlight:)
+                forControlEvents:UIControlEventTouchDown];
+    [[self playButton] addTarget:self
+                          action:@selector(buttonNormal:)
+                forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)buttonHighlight:(UIButton *)button

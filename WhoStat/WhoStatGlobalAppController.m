@@ -55,32 +55,41 @@
     return appController;
 }
 
+- (void)startNewRequest
+{
+    if (([_gameRoundQueue queueLength] < 10) &&
+        ![_requestController isScraping]) {
+        NSLog(@"starting");
+        void (^completion)(NSDictionary *round);
+        completion = ^(NSDictionary *round) {
+            [_gameRoundQueue pushRound:round];
+            NSLog(@"queued: %d", [_gameRoundQueue queueLength]);
+            if (_roundFinished == YES || _gamePlaying == NO) {
+                [self sendNewRoundToGameViewController];
+            }
+            [self startNewRequest];
+        };
+        [_requestController
+         startScrapingFacebookDataWithCompletionBlock:completion];
+    }
+}
 
 - (void)setUpNewGame
 {
     if ([[GameRoundQueue sharedQueue] queueLength] == 0) {
-        [[FBRequestController sharedController]
-         startScrapingFacebookDataWithCompletionBlock:^(NSDictionary *round) {
-            [_gameRoundQueue pushRound:round];
-            [self sendNewRoundToGameViewController];
-        }];
+        [_titleViewController startIndicatorAnimation];
+        [self startNewRequest];
+    } else {
+        [self sendNewRoundToGameViewController];
     }
 }
 
 - (void)gameViewControllerDidFinishRound:(GameViewController *)gvc
 {
     _currentStreak = [gvc currentStreak];
-    if (([_gameRoundQueue queueLength] < 10) &&
-        (![_requestController isScraping])) {
-        [_requestController
-         startScrapingFacebookDataWithCompletionBlock:^(NSDictionary *round) {
-            [_gameRoundQueue pushRound:round];
-            if (_roundFinished == YES) {
-                [self sendNewRoundToGameViewController];
-            }
-        }];
-    }
+    [self startNewRequest];
 }
+
 
 - (void)gameViewControllerShouldExit:(GameViewController *)gvc
 {
@@ -100,7 +109,9 @@
     [newGameViewController setDelegate:self];
     
     if (!_gameViewController) {
+        [_titleViewController stopIndicatorAnimation];
         [newGameViewController setUpNextRound:nextRound withCurrentStreak:0];
+        _gamePlaying = YES;
     } else {
         [newGameViewController setUpNextRound:nextRound
                          withCurrentStreak:_currentStreak];

@@ -19,6 +19,9 @@
 @interface TitleViewController : UIViewController
 
 @property (nonatomic, strong) id <TitleViewControllerDelegate, GameViewControllerDelegate> delegate;
+
 - (void)pushGameViewControllerWithRound:(NSDictionary *)round;
+- (void)startIndicatorAnimation;
+- (void)stopIndicatorAnimation;
 
 @end

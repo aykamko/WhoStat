@@ -34,6 +34,8 @@
     if (self) {
         UINavigationItem *navigationItem = [self navigationItem];
         [navigationItem setTitle:@"Home"];
+        [self.navigationController setNavigationBarHidden:YES animated:NO];
+//        [self.navigationController.navigationBar setHidden:YES];
     }
     return self;
 }

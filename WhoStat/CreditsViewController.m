@@ -7,6 +7,7 @@
 //
 
 #import "CreditsViewController.h"
+#import "WhoStatAppDelegate.h"
 
 @interface CreditsViewController ()
 
@@ -19,16 +20,19 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         UINavigationItem *navigationItem = [self navigationItem];
-        [navigationItem setTitle:@"Credits"];
+        [navigationItem setTitle:@"WhoStat?"];
     }
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    [self.navigationController.navigationBar setHidden:NO];
 }
 
 - (void)didReceiveMemoryWarning

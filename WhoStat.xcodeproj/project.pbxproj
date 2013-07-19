@@ -33,6 +33,8 @@
 		7C2C37041790791900133EF9 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C2C37031790791900133EF9 /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		7C2C37061790791E00133EF9 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C2C37051790791E00133EF9 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		7C2C370817907E3800133EF9 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C2C370717907E3800133EF9 /* libsqlite3.0.dylib */; };
+		7C3E09C21799D4730026756D /* WhoStatNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3E09C11799D4730026756D /* WhoStatNavigationBar.m */; };
+		7C3E09C51799D99F0026756D /* XorCheckView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3E09C41799D99F0026756D /* XorCheckView.m */; };
 		7C7E75751799AEC500F0F33B /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C7E75741799AEC500F0F33B /* Logo.png */; };
 		7C7E75781799B7F200F0F33B /* Placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C7E75771799B7F200F0F33B /* Placeholder.png */; };
 		7C7E757A1799CB9900F0F33B /* CreditsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C7E75791799CB9900F0F33B /* CreditsViewController.xib */; };
@@ -82,6 +84,10 @@
 		7C2C37031790791900133EF9 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		7C2C37051790791E00133EF9 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		7C2C370717907E3800133EF9 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		7C3E09C01799D4730026756D /* WhoStatNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhoStatNavigationBar.h; sourceTree = "<group>"; };
+		7C3E09C11799D4730026756D /* WhoStatNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhoStatNavigationBar.m; sourceTree = "<group>"; };
+		7C3E09C31799D99F0026756D /* XorCheckView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XorCheckView.h; sourceTree = "<group>"; };
+		7C3E09C41799D99F0026756D /* XorCheckView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XorCheckView.m; sourceTree = "<group>"; };
 		7C7E75741799AEC500F0F33B /* Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logo.png; sourceTree = "<group>"; };
 		7C7E75771799B7F200F0F33B /* Placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Placeholder.png; sourceTree = "<group>"; };
 		7C7E75791799CB9900F0F33B /* CreditsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreditsViewController.xib; sourceTree = "<group>"; };
@@ -156,6 +162,8 @@
 				141EF15C178FB3D400B4DFC3 /* TitleViewController.h */,
 				141EF15D178FB3D400B4DFC3 /* TitleViewController.m */,
 				141EF15E178FB3D400B4DFC3 /* TitleViewController.xib */,
+				7C3E09C31799D99F0026756D /* XorCheckView.h */,
+				7C3E09C41799D99F0026756D /* XorCheckView.m */,
 				7C7E757B1799CC1F00F0F33B /* CreditsViewController.h */,
 				7C7E757C1799CC1F00F0F33B /* CreditsViewController.m */,
 				7C7E75791799CB9900F0F33B /* CreditsViewController.xib */,
@@ -172,6 +180,8 @@
 				141EF14A178F9C8900B4DFC3 /* GameViewController.h */,
 				141EF14B178F9C8900B4DFC3 /* GameViewController.m */,
 				141EF14C178F9C8900B4DFC3 /* GameViewController.xib */,
+				7C3E09C01799D4730026756D /* WhoStatNavigationBar.h */,
+				7C3E09C11799D4730026756D /* WhoStatNavigationBar.m */,
 				14CF34041798F5AC0067BE51 /* StaticTextView.h */,
 				14CF34051798F5AC0067BE51 /* StaticTextView.m */,
 				7CADDBA31793713D006ED239 /* Extensions */,
@@ -300,7 +310,9 @@
 				7C0F488F179297C30097161F /* NSMutableArray+Shuffling.m in Sources */,
 				14F5BC03178FDC54008B8FEE /* FlippingViewController.m in Sources */,
 				7CADDBA9179377DB006ED239 /* NSArray+ContainsClass.m in Sources */,
+				7C3E09C21799D4730026756D /* WhoStatNavigationBar.m in Sources */,
 				7C218C531794A49B003A1772 /* WhoStatGlobalAppController.m in Sources */,
+				7C3E09C51799D99F0026756D /* XorCheckView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -132,7 +132,7 @@
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
     //NSLog(@"The view will appear");
-    [[self streakLabel] setText:@"Streak:7"];
+    [[self streakLabel] setText:@"Streak: 7"];
     _friendOptionsTableView.scrollEnabled = NO;
     [[self friendOptionsTableView] setDelegate:self];
     [[self friendOptionsTableView] setDataSource:self];

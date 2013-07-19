@@ -25,13 +25,6 @@
 		141EF162178FB3D400B4DFC3 /* TitleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 141EF15E178FB3D400B4DFC3 /* TitleViewController.xib */; };
 		14CF34061798F5AC0067BE51 /* StaticTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CF34051798F5AC0067BE51 /* StaticTextView.m */; };
 		14F5BC03178FDC54008B8FEE /* FlippingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F5BC02178FDC54008B8FEE /* FlippingViewController.m */; };
-		14F5BC05178FE3B3008B8FEE /* earth.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 14F5BC04178FE3B3008B8FEE /* earth.jpeg */; };
-		14F5BC07178FE40C008B8FEE /* eye.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 14F5BC06178FE40C008B8FEE /* eye.jpeg */; };
-		14F5BC09178FE42A008B8FEE /* girl.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 14F5BC08178FE42A008B8FEE /* girl.jpg */; };
-		14F5BC0B178FE43E008B8FEE /* camera.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 14F5BC0A178FE43E008B8FEE /* camera.jpg */; };
-		14F5BC0D178FE462008B8FEE /* man.png in Resources */ = {isa = PBXBuildFile; fileRef = 14F5BC0C178FE462008B8FEE /* man.png */; };
-		14F5BC0F178FF885008B8FEE /* checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 14F5BC0E178FF885008B8FEE /* checkmark.png */; };
-		14F5BC11178FF88C008B8FEE /* xmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 14F5BC10178FF88C008B8FEE /* xmark.png */; };
 		7C0F488F179297C30097161F /* NSMutableArray+Shuffling.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C0F488E179296B00097161F /* NSMutableArray+Shuffling.m */; };
 		7C218C531794A49B003A1772 /* WhoStatGlobalAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C218C521794A49B003A1772 /* WhoStatGlobalAppController.m */; };
 		7C2C36FE179078F200133EF9 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C2C36FD179078F200133EF9 /* FacebookSDK.framework */; };
@@ -41,6 +34,7 @@
 		7C2C37061790791E00133EF9 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C2C37051790791E00133EF9 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		7C2C370817907E3800133EF9 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C2C370717907E3800133EF9 /* libsqlite3.0.dylib */; };
 		7C7E75751799AEC500F0F33B /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C7E75741799AEC500F0F33B /* Logo.png */; };
+		7C7E75781799B7F200F0F33B /* Placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C7E75771799B7F200F0F33B /* Placeholder.png */; };
 		7CADDB96179362E7006ED239 /* FBRequestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C0F489117935E100097161F /* FBRequestController.m */; };
 		7CADDB9C179370C3006ED239 /* GameRoundQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CADDB9B179370C3006ED239 /* GameRoundQueue.m */; };
 		7CADDBA9179377DB006ED239 /* NSArray+ContainsClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CADDBA8179377DB006ED239 /* NSArray+ContainsClass.m */; };
@@ -74,13 +68,6 @@
 		14CF34051798F5AC0067BE51 /* StaticTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaticTextView.m; sourceTree = "<group>"; };
 		14F5BC01178FDC54008B8FEE /* FlippingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlippingViewController.h; sourceTree = "<group>"; };
 		14F5BC02178FDC54008B8FEE /* FlippingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlippingViewController.m; sourceTree = "<group>"; };
-		14F5BC04178FE3B3008B8FEE /* earth.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = earth.jpeg; sourceTree = "<group>"; };
-		14F5BC06178FE40C008B8FEE /* eye.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = eye.jpeg; sourceTree = "<group>"; };
-		14F5BC08178FE42A008B8FEE /* girl.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = girl.jpg; sourceTree = "<group>"; };
-		14F5BC0A178FE43E008B8FEE /* camera.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = camera.jpg; sourceTree = "<group>"; };
-		14F5BC0C178FE462008B8FEE /* man.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = man.png; sourceTree = "<group>"; };
-		14F5BC0E178FF885008B8FEE /* checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkmark.png; sourceTree = "<group>"; };
-		14F5BC10178FF88C008B8FEE /* xmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xmark.png; sourceTree = "<group>"; };
 		7C0F488D179296B00097161F /* NSMutableArray+Shuffling.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Shuffling.h"; sourceTree = "<group>"; };
 		7C0F488E179296B00097161F /* NSMutableArray+Shuffling.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Shuffling.m"; sourceTree = "<group>"; };
 		7C0F489017935E100097161F /* FBRequestController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FBRequestController.h; sourceTree = "<group>"; };
@@ -94,6 +81,7 @@
 		7C2C37051790791E00133EF9 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		7C2C370717907E3800133EF9 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		7C7E75741799AEC500F0F33B /* Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logo.png; sourceTree = "<group>"; };
+		7C7E75771799B7F200F0F33B /* Placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Placeholder.png; sourceTree = "<group>"; };
 		7CADDB9A179370C3006ED239 /* GameRoundQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameRoundQueue.h; sourceTree = "<group>"; };
 		7CADDB9B179370C3006ED239 /* GameRoundQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameRoundQueue.m; sourceTree = "<group>"; };
 		7CADDBA7179377DB006ED239 /* NSArray+ContainsClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSArray+ContainsClass.h"; path = "../NSArray+ContainsClass.h"; sourceTree = "<group>"; };
@@ -179,13 +167,6 @@
 				14CF34051798F5AC0067BE51 /* StaticTextView.m */,
 				141EF14C178F9C8900B4DFC3 /* GameViewController.xib */,
 				7CADDBA31793713D006ED239 /* Extensions */,
-				14F5BC04178FE3B3008B8FEE /* earth.jpeg */,
-				14F5BC06178FE40C008B8FEE /* eye.jpeg */,
-				14F5BC08178FE42A008B8FEE /* girl.jpg */,
-				14F5BC0C178FE462008B8FEE /* man.png */,
-				14F5BC0A178FE43E008B8FEE /* camera.jpg */,
-				14F5BC0E178FF885008B8FEE /* checkmark.png */,
-				14F5BC10178FF88C008B8FEE /* xmark.png */,
 				7C7E75761799AECB00F0F33B /* Images */,
 				141EF134178F9C6600B4DFC3 /* Supporting Files */,
 			);
@@ -209,6 +190,7 @@
 		7C7E75761799AECB00F0F33B /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				7C7E75771799B7F200F0F33B /* Placeholder.png */,
 				7C7E75741799AEC500F0F33B /* Logo.png */,
 			);
 			name = Images;
@@ -282,17 +264,11 @@
 				141EF142178F9C6600B4DFC3 /* Default@2x.png in Resources */,
 				141EF144178F9C6600B4DFC3 /* Default-568h@2x.png in Resources */,
 				141EF14E178F9C8900B4DFC3 /* GameViewController.xib in Resources */,
+				7C7E75781799B7F200F0F33B /* Placeholder.png in Resources */,
 				141EF153178F9F8100B4DFC3 /* FriendOptionCell.xib in Resources */,
 				141EF160178FB3D400B4DFC3 /* QuestionMark.png in Resources */,
 				141EF162178FB3D400B4DFC3 /* TitleViewController.xib in Resources */,
-				14F5BC05178FE3B3008B8FEE /* earth.jpeg in Resources */,
-				14F5BC07178FE40C008B8FEE /* eye.jpeg in Resources */,
-				14F5BC09178FE42A008B8FEE /* girl.jpg in Resources */,
-				14F5BC0B178FE43E008B8FEE /* camera.jpg in Resources */,
 				7C7E75751799AEC500F0F33B /* Logo.png in Resources */,
-				14F5BC0D178FE462008B8FEE /* man.png in Resources */,
-				14F5BC0F178FF885008B8FEE /* checkmark.png in Resources */,
-				14F5BC11178FF88C008B8FEE /* xmark.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

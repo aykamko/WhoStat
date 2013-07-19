@@ -143,7 +143,7 @@
     [[self streakLabel] setText:[NSString stringWithFormat:@"Streak: %i", [self currentStreak]]];
     [[self friendNameLabel] setText:@"Who posted this?"];
     [_statusTextView setText:_currentStatus];
-    [[self friendImageView] setImage:[UIImage imageNamed:@"eye.jpeg"]];
+    [[self friendImageView] setImage:[UIImage imageNamed:@"placeholder.png"]];
 }
 
 

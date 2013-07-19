@@ -59,6 +59,9 @@
     if ([[GameRoundQueue sharedQueue] queueLength] == 0) {
         [[FBRequestController sharedController] startScrapingFacebookData];
     }
+//    } else {
+//        [self didGetRoundData: [[GameRoundQueue sharedQueue] popRound]];
+//    }
 }
 
 - (void)didGetRoundData:(NSDictionary *)round

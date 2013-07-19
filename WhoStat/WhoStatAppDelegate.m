@@ -43,7 +43,6 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
         [[UINavigationController alloc]
          initWithRootViewController:titleViewController];
     [navController setDelegate:globalAppController];
-    [navController setNavigationBarHidden:YES];
     [[self window] setRootViewController:navController];
     
     self.window.backgroundColor = [UIColor whiteColor];

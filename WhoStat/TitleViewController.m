@@ -40,15 +40,12 @@
 
 - (void)pushGameViewControllerWithRound:(NSDictionary *)round
 {
-    if ([[self.navigationController viewControllers]
-         containsClass:[GameViewController class]]) {
-        return;
-    }
+//    if ([[self.navigationController viewControllers]
+//         containsClass:[GameViewController class]]) {
+//        return;
+//    }
     
-    GameViewController *gameViewController =
-    [[GameViewController alloc]
-     initWithNibName:@"GameViewController"
-     bundle:nil];
+    GameViewController *gameViewController = [[GameViewController alloc] initWithNibName:@"GameViewController" bundle:nil];
     [gameViewController setDelegate:[self delegate]];
     [gameViewController setUpNextRound:round];
     

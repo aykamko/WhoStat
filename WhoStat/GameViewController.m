@@ -13,11 +13,30 @@
 @interface GameViewController ()
 {
     NSIndexPath *_indexPathOfCurrentFriendSelection;
+    GameViewController *_newGameViewController;
+    UIBarButtonItem *_nextButton;
 }
+
+@property (weak, nonatomic) NSString *currentStatus;
+@property (strong, nonatomic) UIImage *correctFriendImage;
+@property (strong, nonatomic) NSString *correctFriendName;
+
 
 @property (strong, nonatomic) NSDictionary *currentRound;
 
-- (void)flipFlippingParentToView:(DestinationViewOption)destination withBlock:(void (^)(BOOL))completion;
+
+//Views
+@property (weak, nonatomic) IBOutlet UIView *statusBackgroundView;
+@property (weak, nonatomic) IBOutlet UITextView *statusTextView;
+
+@property (weak, nonatomic) IBOutlet UIImageView *friendImageView;
+@property (weak, nonatomic) IBOutlet UILabel *friendNameLabel;
+
+@property (weak, nonatomic) IBOutlet UIView *imageBottomBackgroundView;
+@property (weak, nonatomic) IBOutlet UIView *imageTopBackgroundView;
+@property (weak, nonatomic) IBOutlet UIView *imageWholeBackgroundView;
+
+@property (weak, nonatomic) IBOutlet UITableView *friendOptionsTableView;
 
 @end
 
@@ -27,17 +46,13 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // custom initializations
-        _currentlyDisplayedView = DestinationViewOptionStatus;
-        NSDictionary *matt = @{@"pic_square":[UIImage imageNamed:@"earth.jpeg"], @"name":@"Matt"};
-        NSDictionary *dan = @{@"pic_square":[UIImage imageNamed:@"eye.jpeg"], @"name":@"Dan"};
-        NSDictionary *ashwin = @{@"pic_square":[UIImage imageNamed:@"girl.jpg"], @"name":@"Ashwin"};
-        NSDictionary *aleks = @{@"pic_square":[UIImage imageNamed:@"man.png"], @"name":@"Aleks"};
-        NSDictionary *george = @{@"pic_square":[UIImage imageNamed:@"camera.jpg"], @"name":@"George"};
-        _correctFriendName = @"Dan";
-        _correctFriendImage = [UIImage imageNamed:@"eye.jpeg"];
-        _friendOptions = [[NSArray alloc] initWithObjects:matt, george, dan, ashwin, aleks, nil];
-        [[self guessImageView] setImage:nil];
+        
+        // Next Button Configuration
+        _nextButton = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStylePlain target:self action:@selector(gotToNextRound:)];
+        [_nextButton setEnabled:NO];
+        [[self navigationItem] setRightBarButtonItem:_nextButton];
+        
+        
     }
     return self;
 }
@@ -45,6 +60,13 @@
 - (id)init {
     return [self initWithNibName:@"GameViewController" bundle:nil];
 }
+
+-(void)gotToNextRound:(id)sender{
+    [self.delegate didFinishRound];
+//    [self.navigationController pushViewController:_newGameViewController
+//                                         animated:YES];
+}
+
 
 - (void)setUpNextRound:(NSDictionary *)round
 {
@@ -55,105 +77,32 @@
     [self setFriendOptions:_currentRound[@"friendOptions"]];
     
     if (self.navigationController != nil) {
-        GameViewController *newGameViewController =
-            [[GameViewController alloc]
-             initWithNibName:@"GameViewController" bundle:nil];
-        [newGameViewController setDelegate:[self delegate]];
-        [newGameViewController setUpNextRound:round];
-        
-        [self.navigationController pushViewController:newGameViewController
+        NSLog(@"nil navigationController");
+        _newGameViewController = [[GameViewController alloc] initWithNibName:@"GameViewController" bundle:nil];
+        [_newGameViewController setDelegate:[self delegate]];
+        [_newGameViewController setUpNextRound:round];
+        [self.navigationController pushViewController:_newGameViewController
                                              animated:YES];
     }
-}
 
--(void)flipFlippingParentToView:(DestinationViewOption)destination withBlock:(void (^)(BOOL))completion {
-    if ([self currentlyDisplayedView] == destination)
-        return;
-    [UIView transitionWithView:self.flippingParentView
-                      duration:0.0
-                       options:((destination > [self currentlyDisplayedView]) ?
-                                UIViewAnimationOptionTransitionFlipFromRight :
-                                UIViewAnimationOptionTransitionFlipFromLeft)
-                    animations: ^{
-                        switch (destination) {
-                            case DestinationViewOptionStatus:
-                                self.statusView.hidden = false;
-                                self.confirmGuessView.hidden = true;
-                                self.correctAnswerView.hidden = true;
-                                break;
-                            case DestinationViewOptionGuess:
-                                self.statusView.hidden = true;
-                                self.confirmGuessView.hidden = false;
-                                self.correctAnswerView.hidden = true;
-                                break;
-                            case DestinationViewOptionAnswer:
-                                self.statusView.hidden = true;
-                                self.confirmGuessView.hidden = true;
-                                self.correctAnswerView.hidden = false;
-                                break;
-                        }
-                    } completion:completion];
-}
-
-- (IBAction)nextQuestion:(id)sender {
-    [self.delegate didFinishRound];
-}
-
-- (IBAction)cancelGuess:(id)sender {
-    [[self friendOptionsTableView] setUserInteractionEnabled:YES];
-    [[self friendOptionsTableView] deselectRowAtIndexPath:_indexPathOfCurrentFriendSelection animated:YES];
-    [self flipFlippingParentToView:DestinationViewOptionStatus withBlock:^(BOOL finished) {
-        if (finished) {
-            [self setCurrentlyDisplayedView:DestinationViewOptionStatus];
-        }
-    }];
-}
-- (IBAction)confirmGuess:(id)sender {
-    NSString *nameOfGuessedFriend = [[self guessNameLabel] text];
-    
-    void (^completionBlock)(BOOL success) = ^void(BOOL success) {
-        double firstDelayInSeconds = 0.0;
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(firstDelayInSeconds * NSEC_PER_SEC));
-        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            
-            
-            
-            double delayInSeconds = 0.0;
-            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                [self flipFlippingParentToView:DestinationViewOptionAnswer withBlock:^(BOOL finished) {
-                    if (finished) {
-                        [self setCurrentlyDisplayedView:DestinationViewOptionAnswer];
-                    }
-                }];
-            });
-        });
-    };
-    
-    if ([nameOfGuessedFriend isEqualToString:_correctFriendName]) {
-        [UIImageView animateWithDuration:1 animations:^{
-            [[self xOrOImageView] setImage:[UIImage imageNamed:@"checkmark.png"]];
-        }
-                         completion:completionBlock];
-    } else {
-        [UIView animateWithDuration:1 animations:^{
-            [[self xOrOImageView] setImage:[UIImage imageNamed:@"xmark.png"]];
-        }
-                         completion:completionBlock];
-    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [[self friendOptionsTableView] setUserInteractionEnabled:NO];
     NSDictionary *guessedFriendInfo = [[self friendOptions] objectAtIndex:[indexPath row]];
     _indexPathOfCurrentFriendSelection = indexPath;
-    [[self guessImageView] setImage:guessedFriendInfo[@"pic_big"]];
-    [[self guessNameLabel] setText:guessedFriendInfo[@"name"]];
-    [self flipFlippingParentToView:DestinationViewOptionGuess withBlock:^(BOOL finished) {
-        if (finished) {
-            [self setCurrentlyDisplayedView:DestinationViewOptionGuess];
-        }
-    }];
+    [[self friendImageView] setImage:[self correctFriendImage]];
+    [[self friendNameLabel] setText:[self correctFriendName]];
+    
+    //Change colors of the table view cells
+    if (guessedFriendInfo[@"name"] == [self correctFriendName]) {
+        cell *incorrectCell = [self tableView:tableView didSelectRowAtIndexPath:indexPath];
+        
+    }
+    
+    
+    
+    [_nextButton setEnabled:YES];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -166,7 +115,6 @@
     FriendOptionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FriendOptionCell"];
     
     [cell setController:self];
-//    [cell setTableView:tableView];
     NSDictionary *friendInfo = [[self friendOptions] objectAtIndex:[indexPath row]];
     //NSLog(@"%@", friendInfo);
     [[cell nameLabel] setText:friendInfo[@"name"]];
@@ -177,12 +125,13 @@
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
     //NSLog(@"The view will appear");
-    [[self confirmGuessView] setHidden:YES];
     _friendOptionsTableView.scrollEnabled = NO;
     [[self friendOptionsTableView] setDelegate:self];
     [[self friendOptionsTableView] setDataSource:self];
     [[self friendOptionsTableView] reloadData];
+    [[self friendNameLabel] setText:@"Who posted this?"];
     [_statusTextView setText:_currentStatus];
+    [[self friendImageView] setImage:[UIImage imageNamed:@"eye.jpeg"]];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -193,16 +142,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    [[self correctFriendNameLabel] setText:[self correctFriendName]];
-    [[self correctFriendImageView] setImage:[self correctFriendImage]];
-    [self.view bringSubviewToFront:_xOrOImageView];
-    self.confirmGuessView.hidden = true;
-    self.correctAnswerView.hidden = true;
+    [_nextButton setEnabled:NO];
     
     UINib *nib = [UINib nibWithNibName:@"FriendOptionCell" bundle:nil];
-    
     [[self friendOptionsTableView] registerNib:nib forCellReuseIdentifier:@"FriendOptionCell"];
+    
+    // Pretty up the friend image view and border
+    [self imageWholeBackgroundView].layer.cornerRadius = 2;
+    [self imageBottomBackgroundView].layer.cornerRadius = 2;
+    [self imageTopBackgroundView].layer.cornerRadius = 2;
+    [self statusBackgroundView].layer.cornerRadius = 2;
+    [self imageBottomBackgroundView].layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    [self imageBottomBackgroundView].layer.borderWidth = 1.0;
+    [self imageTopBackgroundView].layer.borderColor = [[UIColor blackColor] CGColor];
+    [self imageTopBackgroundView].layer.borderWidth =1.0;
 }
 
 - (void)didReceiveMemoryWarning

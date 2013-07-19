@@ -12,7 +12,7 @@
 
 @protocol TitleViewControllerDelegate <NSObject>
 
-- (void)setUpGame;
+- (void)setUpNewGame;
 
 @end
 

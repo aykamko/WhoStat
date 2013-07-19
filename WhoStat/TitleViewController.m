@@ -42,7 +42,7 @@
     [self.playButton setTitle:@"" forState:UIControlStateNormal];
     [self.playButton addSubview:indicator];
     [indicator startAnimating];
-    [self.delegate setUpGame];
+    [self.delegate setUpNewGame];
 }
 
 - (void)pushGameViewControllerWithRound:(NSDictionary *)round

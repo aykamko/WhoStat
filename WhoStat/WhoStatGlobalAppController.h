@@ -12,10 +12,11 @@
 #import "GameViewController.h"
 
 @interface WhoStatGlobalAppController : NSObject
-<FBRequestControllerDelegate,
-UINavigationControllerDelegate,
+<UINavigationControllerDelegate,
 TitleViewControllerDelegate,
 GameViewControllerDelegate>
+
+@property (strong, nonatomic) UINavigationController *navController;
 
 + (WhoStatGlobalAppController *)appController;
 - (void)sendNewRoundToGameViewController;

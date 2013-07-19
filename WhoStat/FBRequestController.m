@@ -9,7 +9,10 @@
 #import "FBRequestController.h"
 #import "WhoStatAppDelegate.h"
 #import "NSMutableArray+Shuffling.h"
-#import "GameRoundQueue.h"
+
+@interface FBRequestController ()
+@property (nonatomic, strong) void (^completionBlock)(NSDictionary *round);
+@end
 
 @implementation FBRequestController
 
@@ -27,13 +30,14 @@
     return sharedController;
 }
 
-- (void)startScrapingFacebookData
+- (void)startScrapingFacebookDataWithCompletionBlock:(void (^)(NSDictionary *round))completion
 {
-    NSLog(@"scraping");
     dispatch_queue_t queue =
         dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
     dispatch_async(queue, ^(void){
-    
+        
+    [self setCompletionBlock:completion];
+        
     if (FBSession.activeSession.isOpen) {
         NSMutableDictionary *round = [[NSMutableDictionary alloc] init];
         _isScraping = YES;
@@ -58,6 +62,7 @@
                 [self startConnectionToScrapeStatusIntoRound:round];
             }
         };
+        
         dispatch_async(dispatch_get_main_queue(), ^{
             [FBSession openActiveSessionWithReadPermissions:@[@"read_stream"]
                                                allowLoginUI:YES
@@ -289,7 +294,7 @@
     
     _isScraping = NO;
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.delegate didGetRoundData:round];
+        [self completionBlock](round);
     });
         
     });

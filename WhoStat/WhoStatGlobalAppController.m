@@ -36,7 +36,6 @@
         _gamePlaying = NO;
         _roundFinished = NO;
         _requestController = [[FBRequestController alloc] init];
-        [_requestController setDelegate:self];
         _gameRoundQueue = [[GameRoundQueue alloc] init];
     }
     return self;
@@ -56,34 +55,36 @@
     return appController;
 }
 
-- (void)setUpGame
+
+- (void)setUpNewGame
 {
     if ([[GameRoundQueue sharedQueue] queueLength] == 0) {
-        [[FBRequestController sharedController] startScrapingFacebookData];
-    }
-}
-
-- (void)didGetRoundData:(NSDictionary *)round
-{
-    [_gameRoundQueue pushRound:round];
-    NSLog(@"rounds: %d", [_gameRoundQueue queueLength]);
-    if (([_gameRoundQueue queueLength] < 5) &&
-        (![_requestController isScraping])) {
-        [_requestController startScrapingFacebookData];
-    }
-    if (_roundFinished == YES || _gamePlaying == NO) {
-        [self sendNewRoundToGameViewController];
+        [[FBRequestController sharedController]
+         startScrapingFacebookDataWithCompletionBlock:^(NSDictionary *round) {
+            [_gameRoundQueue pushRound:round];
+            [self sendNewRoundToGameViewController];
+        }];
     }
 }
 
 - (void)gameViewControllerDidFinishRound:(GameViewController *)gvc
 {
-    _roundFinished = YES;
     _currentStreak = [gvc currentStreak];
-    if (([_gameRoundQueue queueLength] < 5) &&
+    if (([_gameRoundQueue queueLength] < 10) &&
         (![_requestController isScraping])) {
-        [_requestController startScrapingFacebookData];
+        [_requestController
+         startScrapingFacebookDataWithCompletionBlock:^(NSDictionary *round) {
+            [_gameRoundQueue pushRound:round];
+            if (_roundFinished == YES) {
+                [self sendNewRoundToGameViewController];
+            }
+        }];
     }
+}
+
+- (void)gameViewControllerShouldExit:(GameViewController *)gvc
+{
+    _roundFinished = YES;
     if ([_gameRoundQueue queueLength] > 0) {
         [self sendNewRoundToGameViewController];
     }
@@ -92,12 +93,22 @@
 - (void)sendNewRoundToGameViewController
 {
     NSDictionary *nextRound = [_gameRoundQueue popRound];
-    if (!_gameViewController) {
-        [[self titleViewController] pushGameViewControllerWithRound:nextRound];
-        _roundFinished = NO;
-    }
-    [_gameViewController setUpNextRound:nextRound withCurrentStreak:_currentStreak];
     _roundFinished = NO;
+    GameViewController *newGameViewController =
+        [[GameViewController alloc]
+         initWithNibName:@"GameViewController" bundle:nil];
+    [newGameViewController setDelegate:self];
+    
+    if (!_gameViewController) {
+        [newGameViewController setUpNextRound:nextRound withCurrentStreak:0];
+    } else {
+        [newGameViewController setUpNextRound:nextRound
+                         withCurrentStreak:_currentStreak];
+    }
+    
+    [[self navController] setViewControllers:@[_titleViewController,
+                                              newGameViewController]
+                                    animated:YES];
 }
 
 - (void)navigationController:(UINavigationController *)navigationController
@@ -108,7 +119,6 @@
         _titleViewController = (TitleViewController *) viewController;
     } else if ([viewController isKindOfClass:[GameViewController class]]) {
         _gameViewController = (GameViewController *) viewController;
-        _gamePlaying = YES;
     }
 }
 

@@ -12,7 +12,6 @@
 
 @interface GameViewController ()
 {
-    NSIndexPath *_indexPathOfCurrentFriendSelection;
     GameViewController *_newGameViewController;
     UIBarButtonItem *_nextButton;
 }
@@ -62,43 +61,33 @@
     return self;
 }
 
-- (id)init {
+- (id) init
+{
     return [self initWithNibName:@"GameViewController" bundle:nil];
 }
 
--(void)gotToNextRound:(id)sender{
-    [self.delegate gameViewControllerDidFinishRound:self];
-//    [self.navigationController pushViewController:_newGameViewController
-//                                         animated:YES];
+- (void)gotToNextRound:(id)sender
+{
+    [self.delegate gameViewControllerShouldExit:self];
 }
 
 
 - (void)setUpNextRound:(NSDictionary *)round withCurrentStreak:(int) streak
 {
     _currentRound = round;
-    NSLog(@"streak: %i",streak);
-    [self setCurrentStreak:streak];
     [self setCorrectFriendName:_currentRound[@"correctName"]];
     [self setCorrectFriendImage:_currentRound[@"correctPic"]];
     [self setCurrentStatus:_currentRound[@"status"]];
     [self setCorrectFriendIndexPath:[NSIndexPath indexPathForRow:[_currentRound[@"correctFriendIndex"] integerValue] inSection:0]];
     [self setFriendOptions:_currentRound[@"friendOptions"]];
     
-    if (self.navigationController != nil) {
-        NSLog(@"nil navigationController");
-        _newGameViewController = [[GameViewController alloc] initWithNibName:@"GameViewController" bundle:nil];
-        [_newGameViewController setDelegate:[self delegate]];
-        [_newGameViewController setUpNextRound:round withCurrentStreak:streak];
-        [self.navigationController pushViewController:_newGameViewController
-                                             animated:YES];
-    }
-
+    [self setCurrentStreak:streak];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [[self friendOptionsTableView] setUserInteractionEnabled:NO];
+    
     NSDictionary *guessedFriendInfo = [[self friendOptions] objectAtIndex:[indexPath row]];
-    _indexPathOfCurrentFriendSelection = indexPath;
     [[self friendImageView] setImage:[self correctFriendImage]];
     [[self friendNameLabel] setText:[self correctFriendName]];
     
@@ -121,8 +110,8 @@
     correctCell.selectedBackgroundView = [[UIView alloc] init];
     [correctCell.selectedBackgroundView setBackgroundColor:[UIColor colorWithRed:184.0f/255.0f green:55.0f/255.0f blue:29.0f/255.0f alpha:1]];
     [correctCell setNeedsDisplay];
-    [[self friendOptionsTableView] reloadData];
     [_nextButton setEnabled:YES];
+    [self.delegate gameViewControllerDidFinishRound:self];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -143,13 +132,15 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:YES];
+    [super viewWillAppear:animated];
     //NSLog(@"The view will appear");
-    [[self streakLabel] setText:[NSString stringWithFormat:@"Streak: %i", [self currentStreak]]];
     _friendOptionsTableView.scrollEnabled = NO;
+    
     [[self friendOptionsTableView] setDelegate:self];
     [[self friendOptionsTableView] setDataSource:self];
     [[self friendOptionsTableView] reloadData];
+    
+    [[self streakLabel] setText:[NSString stringWithFormat:@"Streak: %i", [self currentStreak]]];
     [[self friendNameLabel] setText:@"Who posted this?"];
     [_statusTextView setText:_currentStatus];
     [[self friendImageView] setImage:[UIImage imageNamed:@"eye.jpeg"]];
@@ -167,7 +158,6 @@
     [_nextButton setEnabled:NO];
     
     self.navigationController.navigationBar.hidden = NO;
-    
 
     UINib *nib = [UINib nibWithNibName:@"FriendOptionCell" bundle:nil];
     [[self friendOptionsTableView] registerNib:nib forCellReuseIdentifier:@"FriendOptionCell"];

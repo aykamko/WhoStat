@@ -44,6 +44,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
          initWithRootViewController:titleViewController];
     [navController setDelegate:globalAppController];
     [[self window] setRootViewController:navController];
+    [[WhoStatGlobalAppController appController] setNavController:navController];
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

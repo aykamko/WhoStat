@@ -12,6 +12,7 @@
 @protocol GameViewControllerDelegate <NSObject>
 
 - (void)gameViewControllerDidFinishRound:(GameViewController *)gvc;
+- (void)gameViewControllerShouldExit:(GameViewController *)gvc;
 
 @end
 
@@ -22,6 +23,8 @@
 @property (nonatomic) int currentStreak;
 
 
+// Spinner if waiting for new round
+@property (strong, nonatomic) UIActivityIndicatorView *indicator;
 
 // TableView below
 

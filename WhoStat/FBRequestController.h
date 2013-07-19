@@ -8,19 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol FBRequestControllerDelegate <NSObject>
-
-- (void)didGetRoundData:(NSDictionary *)round;
-
-@end
-
 @interface FBRequestController : NSObject
 
-@property (strong, nonatomic) id <FBRequestControllerDelegate> delegate;
-@property (readwrite, copy) void (^completionBlock)();
 @property (nonatomic, readonly) BOOL isScraping;
 
 + (FBRequestController *)sharedController;
-- (void)startScrapingFacebookData;
+- (void)startScrapingFacebookDataWithCompletionBlock:(void (^)(NSDictionary *round))completion;
 
 @end

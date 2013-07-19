@@ -29,7 +29,7 @@
 {
     if (self) {
         UINavigationItem *navigationItem = [self navigationItem];
-        [navigationItem setTitle:@"WhoStat?"];
+        [navigationItem setTitle:@"Home"];
     }
     return self;
 }
@@ -53,11 +53,15 @@
                                          animated:YES];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    self.navigationController.navigationBar.hidden = YES;
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
 }
 
 - (void)didReceiveMemoryWarning

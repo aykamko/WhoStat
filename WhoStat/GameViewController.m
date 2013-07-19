@@ -39,6 +39,8 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *friendOptionsTableView;
 
+@property (weak, nonatomic) IBOutlet UILabel *streakLabel;
+
 @end
 
 @implementation GameViewController
@@ -52,6 +54,8 @@
         _nextButton = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStylePlain target:self action:@selector(gotToNextRound:)];
         [_nextButton setEnabled:NO];
         [[self navigationItem] setRightBarButtonItem:_nextButton];
+        UINavigationItem *navigationItem = [self navigationItem];
+        [navigationItem setTitle:@"WhoStat?"];
         
         
     }
@@ -128,6 +132,7 @@
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
     //NSLog(@"The view will appear");
+    [[self streakLabel] setText:@"Streak:7"];
     _friendOptionsTableView.scrollEnabled = NO;
     [[self friendOptionsTableView] setDelegate:self];
     [[self friendOptionsTableView] setDataSource:self];
@@ -146,6 +151,8 @@
 {
     [super viewDidLoad];
     [_nextButton setEnabled:NO];
+    
+    self.navigationController.navigationBar.hidden = NO;
     
     UINib *nib = [UINib nibWithNibName:@"FriendOptionCell" bundle:nil];
     [[self friendOptionsTableView] registerNib:nib forCellReuseIdentifier:@"FriendOptionCell"];

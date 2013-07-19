@@ -23,6 +23,7 @@
 		141EF160178FB3D400B4DFC3 /* QuestionMark.png in Resources */ = {isa = PBXBuildFile; fileRef = 141EF15B178FB3D400B4DFC3 /* QuestionMark.png */; };
 		141EF161178FB3D400B4DFC3 /* TitleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 141EF15D178FB3D400B4DFC3 /* TitleViewController.m */; };
 		141EF162178FB3D400B4DFC3 /* TitleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 141EF15E178FB3D400B4DFC3 /* TitleViewController.xib */; };
+		14CF34061798F5AC0067BE51 /* StaticTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CF34051798F5AC0067BE51 /* StaticTextView.m */; };
 		14F5BC03178FDC54008B8FEE /* FlippingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F5BC02178FDC54008B8FEE /* FlippingViewController.m */; };
 		14F5BC05178FE3B3008B8FEE /* earth.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 14F5BC04178FE3B3008B8FEE /* earth.jpeg */; };
 		14F5BC07178FE40C008B8FEE /* eye.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 14F5BC06178FE40C008B8FEE /* eye.jpeg */; };
@@ -68,6 +69,8 @@
 		141EF15C178FB3D400B4DFC3 /* TitleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleViewController.h; sourceTree = "<group>"; };
 		141EF15D178FB3D400B4DFC3 /* TitleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleViewController.m; sourceTree = "<group>"; };
 		141EF15E178FB3D400B4DFC3 /* TitleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TitleViewController.xib; sourceTree = "<group>"; };
+		14CF34041798F5AC0067BE51 /* StaticTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaticTextView.h; sourceTree = "<group>"; };
+		14CF34051798F5AC0067BE51 /* StaticTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaticTextView.m; sourceTree = "<group>"; };
 		14F5BC01178FDC54008B8FEE /* FlippingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlippingViewController.h; sourceTree = "<group>"; };
 		14F5BC02178FDC54008B8FEE /* FlippingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlippingViewController.m; sourceTree = "<group>"; };
 		14F5BC04178FE3B3008B8FEE /* earth.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = earth.jpeg; sourceTree = "<group>"; };
@@ -170,6 +173,8 @@
 				14F5BC02178FDC54008B8FEE /* FlippingViewController.m */,
 				141EF14A178F9C8900B4DFC3 /* GameViewController.h */,
 				141EF14B178F9C8900B4DFC3 /* GameViewController.m */,
+				14CF34041798F5AC0067BE51 /* StaticTextView.h */,
+				14CF34051798F5AC0067BE51 /* StaticTextView.m */,
 				141EF14C178F9C8900B4DFC3 /* GameViewController.xib */,
 				7CADDBA31793713D006ED239 /* Extensions */,
 				14F5BC04178FE3B3008B8FEE /* earth.jpeg */,
@@ -289,6 +294,7 @@
 				141EF13A178F9C6600B4DFC3 /* main.m in Sources */,
 				141EF13E178F9C6600B4DFC3 /* WhoStatAppDelegate.m in Sources */,
 				141EF14D178F9C8900B4DFC3 /* GameViewController.m in Sources */,
+				14CF34061798F5AC0067BE51 /* StaticTextView.m in Sources */,
 				7CADDB9C179370C3006ED239 /* GameRoundQueue.m in Sources */,
 				141EF151178F9F4F00B4DFC3 /* FriendOptionCell.m in Sources */,
 				141EF161178FB3D400B4DFC3 /* TitleViewController.m in Sources */,

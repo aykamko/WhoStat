@@ -89,16 +89,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [[self friendOptionsTableView] setUserInteractionEnabled:NO];
-    NSDictionary *guessedFriendInfo = [[self friendOptions] objectAtIndex:[indexPath row]];
+    // NSDictionary *guessedFriendInfo = [[self friendOptions] objectAtIndex:[indexPath row]];
     _indexPathOfCurrentFriendSelection = indexPath;
     [[self friendImageView] setImage:[self correctFriendImage]];
     [[self friendNameLabel] setText:[self correctFriendName]];
     
-    //Change colors of the table view cells
-    if (guessedFriendInfo[@"name"] == [self correctFriendName]) {
-        cell *incorrectCell = [self tableView:tableView didSelectRowAtIndexPath:indexPath];
-        
-    }
+//    //Change colors of the table view cells
+//    if (guessedFriendInfo[@"name"] == [self correctFriendName]) {
+//        cell *incorrectCell = [self tableView:tableView didSelectRowAtIndexPath:indexPath];
+//        
+//    }
     
     
     
@@ -118,7 +118,7 @@
     NSDictionary *friendInfo = [[self friendOptions] objectAtIndex:[indexPath row]];
     //NSLog(@"%@", friendInfo);
     [[cell nameLabel] setText:friendInfo[@"name"]];
-    [[cell thumbnailView] setImage:friendInfo[@"pic_square"]];
+    [[cell thumbnailView] setImage:friendInfo[@"image"]];
     return cell;
 }
 

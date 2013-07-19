@@ -20,6 +20,7 @@
 
 @property (strong, nonatomic) IBOutlet UIImageView *questionMark;
 @property (strong, nonatomic) IBOutlet UIButton *playButton;
+@property (weak, nonatomic) IBOutlet UIButton *creditsButton;
 
 @end
 
@@ -61,6 +62,24 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     self.navigationController.navigationBar.hidden = YES;
+    [[self creditsButton].layer setCornerRadius:2.0];
+    [[self creditsButton] addTarget:self action:@selector(buttonHighlight:) forControlEvents:UIControlEventTouchDown];
+    [[self creditsButton] addTarget:self action:@selector(buttonNormal:) forControlEvents:UIControlEventTouchUpInside];
+    [[self playButton].layer setCornerRadius:2.0];
+    [[self playButton] addTarget:self action:@selector(buttonHighlight:) forControlEvents:UIControlEventTouchDown];
+    [[self playButton] addTarget:self action:@selector(buttonNormal:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)buttonHighlight:(UIButton *)button
+{
+    [button setBackgroundColor:[UIColor colorWithRed:208.0/255.0f green:216.0/255.0f blue:237.0/255.0f alpha:1]];
+    [button setNeedsDisplay];
+}
+
+- (void)buttonNormal:(UIButton *)button
+{
+    [button setBackgroundColor:[UIColor colorWithRed:196.0/255.0f green:204.0/255.0f blue:223.0/255.0f alpha:1]];
+    [button setNeedsDisplay];
 }
 
 - (void)viewDidLoad

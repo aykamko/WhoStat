@@ -40,6 +40,7 @@
 		7C2C37041790791900133EF9 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C2C37031790791900133EF9 /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		7C2C37061790791E00133EF9 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C2C37051790791E00133EF9 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		7C2C370817907E3800133EF9 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C2C370717907E3800133EF9 /* libsqlite3.0.dylib */; };
+		7C7E75751799AEC500F0F33B /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C7E75741799AEC500F0F33B /* Logo.png */; };
 		7CADDB96179362E7006ED239 /* FBRequestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C0F489117935E100097161F /* FBRequestController.m */; };
 		7CADDB9C179370C3006ED239 /* GameRoundQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CADDB9B179370C3006ED239 /* GameRoundQueue.m */; };
 		7CADDBA9179377DB006ED239 /* NSArray+ContainsClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CADDBA8179377DB006ED239 /* NSArray+ContainsClass.m */; };
@@ -92,6 +93,7 @@
 		7C2C37031790791900133EF9 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		7C2C37051790791E00133EF9 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		7C2C370717907E3800133EF9 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		7C7E75741799AEC500F0F33B /* Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logo.png; sourceTree = "<group>"; };
 		7CADDB9A179370C3006ED239 /* GameRoundQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameRoundQueue.h; sourceTree = "<group>"; };
 		7CADDB9B179370C3006ED239 /* GameRoundQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameRoundQueue.m; sourceTree = "<group>"; };
 		7CADDBA7179377DB006ED239 /* NSArray+ContainsClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSArray+ContainsClass.h"; path = "../NSArray+ContainsClass.h"; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 				14F5BC0A178FE43E008B8FEE /* camera.jpg */,
 				14F5BC0E178FF885008B8FEE /* checkmark.png */,
 				14F5BC10178FF88C008B8FEE /* xmark.png */,
+				7C7E75761799AECB00F0F33B /* Images */,
 				141EF134178F9C6600B4DFC3 /* Supporting Files */,
 			);
 			path = WhoStat;
@@ -201,6 +204,14 @@
 				141EF143178F9C6600B4DFC3 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7C7E75761799AECB00F0F33B /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				7C7E75741799AEC500F0F33B /* Logo.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 		7CADDBA31793713D006ED239 /* Extensions */ = {
@@ -278,6 +289,7 @@
 				14F5BC07178FE40C008B8FEE /* eye.jpeg in Resources */,
 				14F5BC09178FE42A008B8FEE /* girl.jpg in Resources */,
 				14F5BC0B178FE43E008B8FEE /* camera.jpg in Resources */,
+				7C7E75751799AEC500F0F33B /* Logo.png in Resources */,
 				14F5BC0D178FE462008B8FEE /* man.png in Resources */,
 				14F5BC0F178FF885008B8FEE /* checkmark.png in Resources */,
 				14F5BC11178FF88C008B8FEE /* xmark.png in Resources */,

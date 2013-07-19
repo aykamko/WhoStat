@@ -76,7 +76,7 @@
 
     
     NSString *query =
-    @"SELECT status_id, message, uid FROM status WHERE uid IN ("
+    @"SELECT message, uid FROM status WHERE uid IN ("
         @"SELECT uid2 FROM friend WHERE uid1 = me()"
     @") order by rand() limit 1";
     
@@ -175,8 +175,8 @@
         int maxIndex = 4;
         if ([mutuals count] < 4)
             maxIndex = [mutuals count];
-            
         
+        NSLog(@"count: %d", maxIndex);
         NSMutableSet *usedIndexes = [[NSMutableSet alloc] init];
         for (int i = 0; i < maxIndex; i++)
         {
@@ -197,12 +197,13 @@
             [friendOptions addObject:userDict];
         }
         
-        maxIndex -= 4;
+        maxIndex = 4 - maxIndex;
+        NSLog(@"left: %d", maxIndex);
         for (int i = 0; i < maxIndex; i++)
         {
             u_int32_t randIndex;
             do {
-                randIndex = arc4random_uniform([mutuals count]);
+                randIndex = arc4random_uniform([friends count]);
             } while ([usedIndexes containsObject:@(randIndex)]);
             NSMutableDictionary *userDict = friends[randIndex];
             [usedIndexes addObject:@(randIndex)];
@@ -216,6 +217,7 @@
 
             [friendOptions addObject:userDict];
         }
+        NSLog(@"length: %d", [friendOptions count]);
         
         round[@"friendOptions"] = friendOptions;
         [self startConnectionToScrapeCorrectFriendDataIntoRound:round];

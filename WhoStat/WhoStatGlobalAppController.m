@@ -65,7 +65,7 @@
 {
     [_gameRoundQueue pushRound:round];
     NSLog(@"rounds: %d", [_gameRoundQueue queueLength]);
-    if (([_gameRoundQueue queueLength] < 3) &&
+    if (([_gameRoundQueue queueLength] < 5) &&
         (![_requestController isScraping])) {
         [_requestController startScrapingFacebookData];
     }
@@ -77,7 +77,7 @@
 - (void)didFinishRound
 {
     _roundFinished = YES;
-    if (([_gameRoundQueue queueLength] < 3) &&
+    if (([_gameRoundQueue queueLength] < 5) &&
         (![_requestController isScraping])) {
         [_requestController startScrapingFacebookData];
     }

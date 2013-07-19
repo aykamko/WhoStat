@@ -14,23 +14,24 @@
 -(void)changeStyle:(FriendOptionCellStyle)style {
     switch (style) {
         case FriendOptionCellStyleNone:
-            [self setBackgroundColor:[UIColor colorWithRed:245 green:245 blue:245 alpha:1]];
+            [self.contentView  setBackgroundColor:[UIColor colorWithRed:245.0f/255.0f green:245.0f/255.0f blue:245.0f/255.0f alpha:1]];
             break;
          case FriendOptionCellStyleDisabled:
-            [self setBackgroundColor:[UIColor colorWithRed:166 green:166 blue:166 alpha:1]];
+            [self.contentView setBackgroundColor:[UIColor colorWithRed:166.0f/255.0f green:166.0f/255.0f blue:166.0f/255.0f alpha:1]];
             [[self nameLabel] setTextColor:[UIColor whiteColor]];
             break;
         case FriendOptionCellStyleCorrect:
-            [self setBackgroundColor:[UIColor colorWithRed:184 green:55 blue:29 alpha:1]];
+            [self.contentView setBackgroundColor:[UIColor colorWithRed:184.0f/255.0f green:55.0f/255.0f blue:29.0f/255.0f alpha:1]];
             [[self nameLabel] setTextColor:[UIColor whiteColor]];
             break;
         case FriendOptionCellStyleIncorrect:
-            [self setBackgroundColor:[UIColor colorWithRed:93 green:133 blue:21 alpha:1]];
+            [self.contentView setBackgroundColor:[UIColor colorWithRed:93.0f/255.0f green:133.0f/255.0f blue:21.0f/255.0f alpha:1]];
             [[self nameLabel] setTextColor:[UIColor whiteColor]];
             break;
         default:
             break;
     }
+    [self setNeedsDisplay];
 }
 
 @end

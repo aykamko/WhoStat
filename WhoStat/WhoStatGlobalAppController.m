@@ -12,7 +12,9 @@
 #import "FBRequestController.h"
 #import "GameRoundQueue.h"
 
-@interface WhoStatGlobalAppController ()
+@interface WhoStatGlobalAppController () {
+    int _currentStreak;
+}
 
 @property (nonatomic, strong) FBRequestController *requestController;
 @property (nonatomic, strong) GameRoundQueue *gameRoundQueue;
@@ -74,9 +76,10 @@
     }
 }
 
-- (void)didFinishRound
+- (void)gameViewControllerDidFinishRound:(GameViewController *)gvc
 {
     _roundFinished = YES;
+    _currentStreak = [gvc currentStreak];
     if (([_gameRoundQueue queueLength] < 5) &&
         (![_requestController isScraping])) {
         [_requestController startScrapingFacebookData];
@@ -93,7 +96,7 @@
         [[self titleViewController] pushGameViewControllerWithRound:nextRound];
         _roundFinished = NO;
     }
-    [_gameViewController setUpNextRound:nextRound];
+    [_gameViewController setUpNextRound:nextRound withCurrentStreak:_currentStreak];
     _roundFinished = NO;
 }
 

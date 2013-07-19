@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+@class GameViewController;
 
 @protocol GameViewControllerDelegate <NSObject>
 
-- (void)didFinishRound;
+- (void)gameViewControllerDidFinishRound:(GameViewController *)gvc;
 
 @end
 
@@ -18,7 +19,7 @@
 
 @property (strong, nonatomic) id <GameViewControllerDelegate> delegate;
 
-// The status
+@property (nonatomic) int currentStreak;
 
 
 
@@ -26,6 +27,6 @@
 
 @property (strong, nonatomic) NSArray *friendOptions;
 
-- (void)setUpNextRound:(NSDictionary *)round;
+- (void)setUpNextRound:(NSDictionary *)round withCurrentStreak:(int)streak;
 
 @end

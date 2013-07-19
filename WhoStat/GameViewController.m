@@ -67,15 +67,17 @@
 }
 
 -(void)gotToNextRound:(id)sender{
-    [self.delegate didFinishRound];
+    [self.delegate gameViewControllerDidFinishRound:self];
 //    [self.navigationController pushViewController:_newGameViewController
 //                                         animated:YES];
 }
 
 
-- (void)setUpNextRound:(NSDictionary *)round
+- (void)setUpNextRound:(NSDictionary *)round withCurrentStreak:(int) streak
 {
     _currentRound = round;
+    NSLog(@"streak: %i",streak);
+    [self setCurrentStreak:streak];
     [self setCorrectFriendName:_currentRound[@"correctName"]];
     [self setCorrectFriendImage:_currentRound[@"correctPic"]];
     [self setCurrentStatus:_currentRound[@"status"]];
@@ -86,7 +88,7 @@
         NSLog(@"nil navigationController");
         _newGameViewController = [[GameViewController alloc] initWithNibName:@"GameViewController" bundle:nil];
         [_newGameViewController setDelegate:[self delegate]];
-        [_newGameViewController setUpNextRound:round];
+        [_newGameViewController setUpNextRound:round withCurrentStreak:streak];
         [self.navigationController pushViewController:_newGameViewController
                                              animated:YES];
     }
@@ -103,12 +105,23 @@
     //Change colors of the table view cells
     if (guessedFriendInfo[@"name"] != [self correctFriendName]) {
         FriendOptionCell *incorrectCell = (FriendOptionCell *)[self tableView:tableView cellForRowAtIndexPath:indexPath];
-        [incorrectCell changeStyle:FriendOptionCellStyleIncorrect];
+//        [incorrectCell changeStyle:FriendOptionCellStyleIncorrect];
+        NSLog(@"coloring incorrect cell");
+        [self setCurrentStreak:0];
+        incorrectCell.selectedBackgroundView = [[UIView alloc] init];
+        [incorrectCell.selectedBackgroundView setBackgroundColor:[UIColor colorWithRed:93.0f/255.0f green:133.0f/255.0f blue:21.0f/255.0f alpha:1]];
+        [incorrectCell setNeedsDisplay];
+    } else {
+        [self setCurrentStreak:[self currentStreak]+1];
     }
-    
+    [[self streakLabel] setText:[NSString stringWithFormat:@"Streak: %i", [self currentStreak]]];
+    NSLog(@"coloring correct cell");
     FriendOptionCell *correctCell = (FriendOptionCell *)[self tableView:tableView cellForRowAtIndexPath:[self correctFriendIndexPath]];
-    [correctCell changeStyle:FriendOptionCellStyleCorrect];
-    
+//    [correctCell changeStyle:FriendOptionCellStyleCorrect];
+    correctCell.selectedBackgroundView = [[UIView alloc] init];
+    [correctCell.selectedBackgroundView setBackgroundColor:[UIColor colorWithRed:184.0f/255.0f green:55.0f/255.0f blue:29.0f/255.0f alpha:1]];
+    [correctCell setNeedsDisplay];
+    [[self friendOptionsTableView] reloadData];
     [_nextButton setEnabled:YES];
 }
 
@@ -132,7 +145,7 @@
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
     //NSLog(@"The view will appear");
-    [[self streakLabel] setText:@"Streak: 7"];
+    [[self streakLabel] setText:[NSString stringWithFormat:@"Streak: %i", [self currentStreak]]];
     _friendOptionsTableView.scrollEnabled = NO;
     [[self friendOptionsTableView] setDelegate:self];
     [[self friendOptionsTableView] setDataSource:self];
@@ -141,6 +154,7 @@
     [_statusTextView setText:_currentStatus];
     [[self friendImageView] setImage:[UIImage imageNamed:@"eye.jpeg"]];
 }
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 50;
@@ -154,6 +168,7 @@
     
     self.navigationController.navigationBar.hidden = NO;
     
+
     UINib *nib = [UINib nibWithNibName:@"FriendOptionCell" bundle:nil];
     [[self friendOptionsTableView] registerNib:nib forCellReuseIdentifier:@"FriendOptionCell"];
     

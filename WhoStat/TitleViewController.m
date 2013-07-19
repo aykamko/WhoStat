@@ -54,7 +54,7 @@
     
     GameViewController *gameViewController = [[GameViewController alloc] initWithNibName:@"GameViewController" bundle:nil];
     [gameViewController setDelegate:[self delegate]];
-    [gameViewController setUpNextRound:round];
+    [gameViewController setUpNextRound:round withCurrentStreak:0];
     [self.navigationController pushViewController:gameViewController
                                          animated:YES];
 }

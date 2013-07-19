@@ -20,6 +20,7 @@
 
 @property (strong, nonatomic) IBOutlet UIImageView *questionMark;
 @property (strong, nonatomic) IBOutlet UIButton *playButton;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 
 @end
 
@@ -35,7 +36,10 @@
 }
 
 - (IBAction)playGame:(id)sender {
+    [[self activityIndicatorView] setHidden:NO];
+    [[self activityIndicatorView] startAnimating];
     [self.delegate setUpGame];
+    [[self activityIndicatorView] stopAnimating];
 }
 
 - (void)pushGameViewControllerWithRound:(NSDictionary *)round
@@ -48,7 +52,7 @@
     GameViewController *gameViewController = [[GameViewController alloc] initWithNibName:@"GameViewController" bundle:nil];
     [gameViewController setDelegate:[self delegate]];
     [gameViewController setUpNextRound:round];
-    
+    [[self activityIndicatorView] stopAnimating];
     [self.navigationController pushViewController:gameViewController
                                          animated:YES];
 }
@@ -61,6 +65,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    [[self activityIndicatorView] setHidden:YES];
     
 }
 

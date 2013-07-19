@@ -7,7 +7,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TitleViewController">
             <connections>
-                <outlet property="activityIndicatorView" destination="nnA-oN-dIY" id="2Cz-fN-7ri"/>
                 <outlet property="playButton" destination="56" id="66"/>
                 <outlet property="questionMark" destination="4" id="40"/>
                 <outlet property="view" destination="3" id="41"/>
@@ -36,7 +35,7 @@
                     <rect key="frame" x="84" y="465" width="159" height="56"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="55" id="R1P-zD-J1h"/>
+                        <constraint firstAttribute="height" constant="55" id="Ts4-uP-Sao"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                     <state key="normal" title="Play">
@@ -50,27 +49,18 @@
                         <action selector="playGame:" destination="-1" eventType="touchUpInside" id="71"/>
                     </connections>
                 </button>
-                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="nnA-oN-dIY">
-                    <rect key="frame" x="153" y="528" width="20" height="20"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="20" id="hk7-nU-xbt"/>
-                    </constraints>
-                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" red="0.30196078431372547" green="0.41568627450980389" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="4" firstAttribute="centerX" secondItem="3" secondAttribute="centerX" id="Cjf-EZ-HeH"/>
-                <constraint firstItem="49" firstAttribute="top" secondItem="3" secondAttribute="top" constant="20" symbolic="YES" id="GRk-dR-X3J"/>
-                <constraint firstAttribute="trailing" secondItem="56" secondAttribute="trailing" constant="77" id="P7H-aK-dnM"/>
-                <constraint firstItem="4" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="84" id="TkD-wi-xPO"/>
-                <constraint firstItem="nnA-oN-dIY" firstAttribute="top" secondItem="56" secondAttribute="bottom" constant="8" symbolic="YES" id="b5W-wQ-vKn"/>
-                <constraint firstItem="56" firstAttribute="top" secondItem="4" secondAttribute="bottom" constant="63" id="bJQ-PP-ZSy"/>
-                <constraint firstItem="4" firstAttribute="centerX" secondItem="49" secondAttribute="centerX" id="dCk-hv-wrz"/>
-                <constraint firstItem="56" firstAttribute="centerX" secondItem="nnA-oN-dIY" secondAttribute="centerX" id="eBo-lZ-ONS"/>
-                <constraint firstAttribute="bottom" secondItem="nnA-oN-dIY" secondAttribute="bottom" constant="20" symbolic="YES" id="kTu-FT-Wso"/>
-                <constraint firstItem="4" firstAttribute="leading" secondItem="56" secondAttribute="leading" id="mdR-bG-duX"/>
-                <constraint firstItem="4" firstAttribute="centerY" secondItem="3" secondAttribute="centerY" id="qkd-OE-bLM"/>
+                <constraint firstAttribute="bottom" secondItem="56" secondAttribute="bottom" constant="48" id="OuN-IV-Tc9"/>
+                <constraint firstItem="56" firstAttribute="leading" secondItem="4" secondAttribute="leading" id="Pa6-yG-dum"/>
+                <constraint firstAttribute="trailing" secondItem="56" secondAttribute="trailing" constant="77" id="Qgp-3x-93d"/>
+                <constraint firstItem="49" firstAttribute="top" secondItem="3" secondAttribute="top" constant="20" symbolic="YES" id="S5k-LV-4UB"/>
+                <constraint firstItem="4" firstAttribute="centerY" secondItem="3" secondAttribute="centerY" id="XSH-vy-1hV"/>
+                <constraint firstItem="4" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="84" id="d2w-jW-taD"/>
+                <constraint firstItem="49" firstAttribute="centerX" secondItem="3" secondAttribute="centerX" id="lJL-ze-P0M"/>
+                <constraint firstItem="4" firstAttribute="centerX" secondItem="49" secondAttribute="centerX" id="tD0-V2-ajC"/>
+                <constraint firstItem="56" firstAttribute="top" secondItem="4" secondAttribute="bottom" constant="63" id="wgH-8H-wxu"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>

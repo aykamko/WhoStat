@@ -20,7 +20,6 @@
 
 @property (strong, nonatomic) IBOutlet UIImageView *questionMark;
 @property (strong, nonatomic) IBOutlet UIButton *playButton;
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 
 @end
 
@@ -36,10 +35,14 @@
 }
 
 - (IBAction)playGame:(id)sender {
-    [[self activityIndicatorView] setHidden:NO];
-    [[self activityIndicatorView] startAnimating];
+    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    CGFloat halfButtonHeight = self.playButton.bounds.size.height / 2;
+    CGFloat halfButtonWidth = self.playButton.bounds.size.width / 2;
+    indicator.center = CGPointMake(halfButtonWidth , halfButtonHeight);
+    [self.playButton setTitle:@"" forState:UIControlStateNormal];
+    [self.playButton addSubview:indicator];
+    [indicator startAnimating];
     [self.delegate setUpGame];
-    [[self activityIndicatorView] stopAnimating];
 }
 
 - (void)pushGameViewControllerWithRound:(NSDictionary *)round
@@ -52,7 +55,6 @@
     GameViewController *gameViewController = [[GameViewController alloc] initWithNibName:@"GameViewController" bundle:nil];
     [gameViewController setDelegate:[self delegate]];
     [gameViewController setUpNextRound:round];
-    [[self activityIndicatorView] stopAnimating];
     [self.navigationController pushViewController:gameViewController
                                          animated:YES];
 }
@@ -65,7 +67,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    [[self activityIndicatorView] setHidden:YES];
     
 }
 

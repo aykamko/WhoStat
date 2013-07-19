@@ -125,7 +125,7 @@
     NSDictionary *friendInfo = [[self friendOptions] objectAtIndex:[indexPath row]];
     //NSLog(@"%@", friendInfo);
     [[cell nameLabel] setText:friendInfo[@"name"]];
-    [[cell thumbnailView] setImage:friendInfo[@"pic_square"]];
+    [[cell thumbnailView] setImage:friendInfo[@"image"]];
     return cell;
 }
 

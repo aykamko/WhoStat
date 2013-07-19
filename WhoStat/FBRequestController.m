@@ -285,6 +285,7 @@
     round[@"correctFriendIndex"] = idx;
     round[@"friendOptions"] = roundArray;
     
+    _isScraping = NO;
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.delegate didGetRoundData:round];
     });

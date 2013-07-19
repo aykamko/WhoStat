@@ -20,6 +20,7 @@
 @property (weak, nonatomic) NSString *currentStatus;
 @property (strong, nonatomic) UIImage *correctFriendImage;
 @property (strong, nonatomic) NSString *correctFriendName;
+@property (weak, nonatomic) NSIndexPath *correctFriendIndexPath;
 
 
 @property (strong, nonatomic) NSDictionary *currentRound;
@@ -74,6 +75,7 @@
     [self setCorrectFriendName:_currentRound[@"correctName"]];
     [self setCorrectFriendImage:_currentRound[@"correctPic"]];
     [self setCurrentStatus:_currentRound[@"status"]];
+    [self setCorrectFriendIndexPath:[NSIndexPath indexPathForRow:[_currentRound[@"correctFriendIndex"] integerValue] inSection:0]];
     [self setFriendOptions:_currentRound[@"friendOptions"]];
     
     if (self.navigationController != nil) {
@@ -95,12 +97,13 @@
     [[self friendNameLabel] setText:[self correctFriendName]];
     
     //Change colors of the table view cells
-    if (guessedFriendInfo[@"name"] == [self correctFriendName]) {
-        cell *incorrectCell = [self tableView:tableView didSelectRowAtIndexPath:indexPath];
-        
+    if (guessedFriendInfo[@"name"] != [self correctFriendName]) {
+        FriendOptionCell *incorrectCell = (FriendOptionCell *)[self tableView:tableView cellForRowAtIndexPath:indexPath];
+        [incorrectCell changeStyle:FriendOptionCellStyleIncorrect];
     }
     
-    
+    FriendOptionCell *correctCell = (FriendOptionCell *)[self tableView:tableView cellForRowAtIndexPath:[self correctFriendIndexPath]];
+    [correctCell changeStyle:FriendOptionCellStyleCorrect];
     
     [_nextButton setEnabled:YES];
 }
